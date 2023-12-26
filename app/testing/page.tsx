@@ -1,6 +1,6 @@
 import { Hero, QuizTabs, Quizzes } from '@/components'
 
-export default function LandingPage() {
+export default function TestingPage() {
   return (
     <>
       <Hero links />
