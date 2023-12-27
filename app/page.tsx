@@ -8,11 +8,9 @@ export default function LandingPage() {
   return (
     <>
       <Hero links={true} />
-      <section className='container relative pb-12'>
-        <div className='mx-auto max-w-xl px-4 sm:px-6 lg:px-8'>
-          <QuizTabs />
-          <Quizzes />
-        </div>
+      <section className='w-full flex flex-col justify-center items-center pb-12 mx-auto md:max-w-6xl max-w-screen px-6'>
+        <QuizTabs />
+        <Quizzes />
       </section>
     </>
   )

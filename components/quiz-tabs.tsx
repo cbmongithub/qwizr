@@ -46,7 +46,7 @@ export function QuizTabs({ className, ...props }: QuizTabsProps) {
         {tabs.map((tab, index) => (
           <div
             key={`quiz_tab_${index}`}
-            className='overflow-hidden'>
+            className='overflow-x-hidden'>
             <Link
               href={tab.href}
               className={cn(

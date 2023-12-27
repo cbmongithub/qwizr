@@ -59,4 +59,10 @@
       'rlig' 1,
       'calt' 1;
   }
+  body::-webkit-scrollbar {
+    @apply w-[0.5em];
+  }
+  body::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-primary;
+  }
 }

@@ -24,8 +24,8 @@ export function MobileNav() {
       onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
-          variant='ghost'
-          className='absolute p-2 ml-[-8px] text-base focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden'>
+          variant='outline'
+          className='absolute text-base focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden'>
           <svg
             strokeWidth='1.5'
             viewBox='0 0 24 24'
