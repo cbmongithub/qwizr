@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from './ui'
 
-const quizzes = [
+const quizData = [
   {
     title: 'Javascript',
     description:
@@ -25,8 +25,8 @@ const quizzes = [
 ]
 
 export function QuizCard() {
-  return quizzes.map((quiz, index) => (
-    <Card>
+  return quizData.map((quiz, index) => (
+    <Card key={`quiz_card_${index}`}>
       <CardHeader>
         <div className='flex'>
           <Badge

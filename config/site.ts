@@ -1,9 +1,13 @@
-export type SiteConfig = typeof siteConfig
-
 export const siteConfig = {
   name: 'Qwizr',
+  url: 'https://qwizr.com',
+  ogImage: 'https://qwizr.com/og.jpg',
   description:
-    'How well do you know your tech stack? Compete for the top spot on the leaderboard and showcase your expertise! Will you become the next quiz master?',
+    'Take quizzes and compete for the top spot on the leaderboard with Qwizr! Will you become the next Qwizard?',
+  links: {
+    twitter: 'https://twitter.com/_coderchris',
+    github: 'https://github.com/christianbmartinez/',
+  },
   mainNav: [
     {
       title: 'Home',
@@ -14,4 +18,20 @@ export const siteConfig = {
       href: '/leaderboard',
     },
   ],
+  mobileNav: [
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'Leaderboard',
+      href: '/leaderboard',
+    },
+    {
+      title: 'Login',
+      href: '/login',
+    },
+  ],
 }
+
+export type SiteConfig = typeof siteConfig

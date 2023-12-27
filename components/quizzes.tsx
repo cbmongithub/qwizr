@@ -1,6 +1,6 @@
 'use client'
 
-import { QuizCard } from '.'
+import { QuizCard } from './quiz-card'
 
 export function Quizzes() {
   return (

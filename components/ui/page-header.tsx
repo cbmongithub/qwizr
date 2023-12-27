@@ -1,8 +1,7 @@
 'use client'
 
+import { cn } from '@/lib'
 import Balance from 'react-wrap-balancer'
-
-import { cn } from '@/lib/utils'
 
 function PageHeader({
   className,
@@ -12,7 +11,7 @@ function PageHeader({
   return (
     <section
       className={cn(
-        'mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-10',
+        'mx-auto flex max-w-xl flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-10',
         className
       )}
       {...props}>
@@ -43,7 +42,7 @@ function PageHeaderDescription({
   return (
     <Balance
       className={cn(
-        'max-w-[700px] text-center text-lg text-muted-foreground sm:text-xl',
+        'max-w-xl text-center text-lg text-muted-foreground sm:text-xl',
         className
       )}
       {...props}

@@ -23,6 +23,23 @@ export {
   CardDescription,
   CardContent,
 } from './card'
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+} from './dropdown-menu'
 export { HoverCard, HoverCardTrigger, HoverCardContent } from './hover-card'
 export { Icons } from './icons'
 export {
@@ -36,6 +53,18 @@ export { RadioGroup, RadioGroupItem } from './radio-group'
 export { ScrollArea, ScrollBar } from './scroll-area'
 export { Separator } from './separator'
 export { Skeleton } from './skeleton'
+export {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+} from './sheet'
 export {
   Table,
   TableHeader,

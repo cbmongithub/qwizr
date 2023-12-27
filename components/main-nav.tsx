@@ -1,39 +1,31 @@
 'use client'
 
 import Link from 'next/link'
+import { siteConfig } from '@/config'
 
-import { NavItem } from '@/types/nav'
-import { siteConfig } from '@/config/site'
+import { Button, Icons } from '@/components/ui'
 
-import { Button, Icons } from './ui'
-
-interface MainNavProps {
-  items?: NavItem[]
-}
-
-export function MainNav({ items }: MainNavProps) {
+export function MainNav() {
   return (
-    <div className='flex gap-6 md:gap-10'>
+    <div className='mr-4 hidden md:flex'>
       <Link
         href='/'
-        className='flex items-center space-x-2'>
-        <Icons.logo className='h-7 w-7' />
-        <span className='inline-block font-bold'>{siteConfig.name}</span>
+        className='mr-6 flex items-center space-x-2'>
+        <Icons.logo className='h-6 w-6' />
+        <span className='hidden font-bold sm:inline-block'>
+          {siteConfig.name}
+        </span>
       </Link>
-      {items?.length ? (
-        <nav className='flex'>
-          {items?.map(
-            (item, index) =>
-              item.href && (
-                <Link
-                  key={index}
-                  href={item.href}>
-                  <Button variant='ghost'>{item.title}</Button>
-                </Link>
-              )
-          )}
-        </nav>
-      ) : null}
+      <nav className='flex items-center gap-6 text-sm'>
+        {siteConfig.mainNav.map((item, index) => (
+          <Link
+            key={`mainNav_link_${index}`}
+            href={item.href}
+            className='mr-[-20px]'>
+            <Button variant='ghost'>{item.title}</Button>
+          </Link>
+        ))}
+      </nav>
     </div>
   )
 }

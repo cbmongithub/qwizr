@@ -1,25 +1,23 @@
-'use client'
-
 import Link from 'next/link'
-import { MainNav, ThemeToggle } from '@/components'
 
-import { siteConfig } from '@/config/site'
-import { cn } from '@/lib/utils'
-
-import { buttonVariants } from './ui'
+import { MainNav } from '@/components/main-nav'
+import { MobileNav } from '@/components/mobile-nav'
+import { ModeToggle } from '@/components/mode-toggle'
+import { Button } from '@/components/ui'
 
 export function SiteHeader() {
   return (
-    <header className='sticky top-0 z-40 w-full border-b bg-background/10 backdrop-blur-md'>
-      <div className='container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0'>
-        <MainNav items={siteConfig.mainNav} />
-        <div className='flex flex-1 items-center justify-end space-x-4'>
-          <nav className='flex items-center space-x-2'>
-            <ThemeToggle />
+    <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+      <div className='container flex h-14 max-w-screen-2xl items-center'>
+        <MainNav />
+        <MobileNav />
+        <div className='flex flex-1 items-center space-x-2 justify-end'>
+          <nav className='flex items-center'>
+            <ModeToggle />
             <Link
               href='/login'
-              className={cn(buttonVariants({ variant: 'outline' }))}>
-              Login
+              className='ml-4'>
+              <Button variant='outline'>Login</Button>
             </Link>
           </nav>
         </div>

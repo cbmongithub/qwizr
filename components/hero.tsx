@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import { Announcement } from '.'
+import { Announcement } from './announcement'
 import {
   Button,
   PageActions,
@@ -27,7 +27,7 @@ export function Hero({ title, description, links }: HeroProps) {
       <PageHeaderDescription>
         {
           (description ||=
-            'Compete for the top spot on the leaderboard and showcase your expertise! Will you become the next quiz master?')
+            'Take quizzes and compete for the top spot on the leaderboard with Qwizr! Will you become the next Qwizard?')
         }
       </PageHeaderDescription>
       {links && (
