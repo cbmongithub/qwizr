@@ -6,6 +6,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
+  Badge,
   Button,
   HoverCard,
   HoverCardContent,
@@ -105,7 +106,7 @@ export default function LeaderBoardPage() {
     <>
       <Hero
         title='Global Leaderboard'
-        description='View the top 100 qwizards 🧙 in the world'
+        description='View the top 100 Qwizrs in the world'
         links={false}
       />
       <section className='container relative pb-12 px-6'>
@@ -125,13 +126,7 @@ export default function LeaderBoardPage() {
                 {users.map(user => (
                   <TableRow key={user.rank}>
                     <TableCell className='text-center'>
-                      {user.rank === '1'
-                        ? '#1 🧙'
-                        : user.rank === '2'
-                        ? '#2 🧙‍♀️'
-                        : user.rank === '3'
-                        ? '#3 🧝‍♂️'
-                        : `#${user.rank}`}
+                      {`#${user.rank}`}
                     </TableCell>
                     <TableCell className='text-center'>
                       <HoverCard>
@@ -155,15 +150,9 @@ export default function LeaderBoardPage() {
                                 <h4 className='text-sm font-semibold text-left'>
                                   {user.name}
                                 </h4>
-                                <span className='text-sm text-foreground'>
-                                  {user.rank === '1'
-                                    ? '#1 (Qwizard) 🧙'
-                                    : user.rank === '2'
-                                    ? '#2 (Qwitch) 🧙‍♀️'
-                                    : user.rank === '3'
-                                    ? '#3 (Qwelf) 🧝‍♂️'
-                                    : `#${user.rank}`}
-                                </span>
+                                {user.rank === '1' && (
+                                  <Badge variant='default'>🧙 Qwizard</Badge>
+                                )}
                               </div>
                               <p className='text-sm text-left'>
                                 {user.description}
