@@ -19,7 +19,7 @@ interface HeroProps {
 
 export function Hero({ title, description, links }: HeroProps) {
   return (
-    <PageHeader className='pt-8 pb-12'>
+    <PageHeader>
       <Announcement />
       <PageHeaderHeading>
         {(title ||= 'Quizzes for web development')}

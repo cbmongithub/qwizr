@@ -39,7 +39,7 @@ export function QuizTabs({ className, ...props }: QuizTabsProps) {
   const pathname = usePathname()
 
   return (
-    <ScrollArea className='w-full whitespace-nowrap text-primary'>
+    <ScrollArea className='w-full md:max-w-2xl lg:max-w-full whitespace-nowrap text-primary'>
       <div
         className={cn('flex w-max space-x-4 pr-4', className)}
         {...props}>

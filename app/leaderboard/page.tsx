@@ -194,7 +194,7 @@ export default function LeaderBoardPage() {
             </Table>
             <ScrollBar
               orientation='horizontal'
-              className='visible'
+              className='invisible'
             />
           </ScrollArea>
         </div>
