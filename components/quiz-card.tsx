@@ -17,7 +17,7 @@ const quizData = [
   {
     title: 'Javascript',
     description:
-      'Test how well you know javascript with 80 timed, multiple choice questions.',
+      'Test your javascript skills with 80 timed, multiple choice questions.',
     duration: '0.5 hrs',
     concepts:
       'Closures,Prototypes, Modules, Currying, Scopes, Methods, Memoization, IIFE, Error handling, and more.',
@@ -28,15 +28,13 @@ export function QuizCard() {
   return quizData.map((quiz, index) => (
     <Card key={`quiz_card_${index}`}>
       <CardHeader>
-        <div className='flex'>
-          <Badge
-            className='py-1 mb-2'
-            variant='default'>
+        <div className='flex flex-row justify-between pb-3'>
+          <CardTitle>{quiz.title}</CardTitle>
+          <Badge variant='default'>
             <Clock5Icon className='h-3 w-3' />
             &nbsp;<p className='font-normal text-[0.75rem]'>{quiz.duration}</p>
           </Badge>
         </div>
-        <CardTitle>{quiz.title}</CardTitle>
         <CardDescription>{quiz.description}</CardDescription>
       </CardHeader>
       <CardContent className='grid gap-4'>
