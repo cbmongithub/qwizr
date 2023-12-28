@@ -65,13 +65,13 @@ export function MobileNav() {
         <div className='flex flex-col space-y-3 mt-6'>
           {siteConfig.mobileNav.map((item, index) => (
             <MobileLink
+              key={`mobileNav_link_${index}`}
               className={cn(
                 'flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary dark:hover:text-secondary-foreground',
                 pathname === item.href
                   ? 'bg-muted font-medium text-primary dark:bg-primary dark:text-foreground'
                   : 'text-muted-foreground'
               )}
-              key={`mobileNav_link_${index}`}
               href={item.href}
               onOpenChange={setOpen}>
               {item.title}
