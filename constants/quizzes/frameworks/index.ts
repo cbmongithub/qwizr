@@ -1,7 +1,7 @@
 const frameWorkQuizzes = [
   {
-    id: 1,
-    title: 'Next JS',
+    slug: 'next-js',
+    title: 'Next Js',
     description:
       'Test your Next js skills with 80 timed, multiple choice questions.',
     duration: 0.5,
@@ -48,7 +48,7 @@ const frameWorkQuizzes = [
     ],
   },
   {
-    id: 2,
+    slug: 'react-js',
     title: 'React JS',
     description:
       'Test your React js skills with 80 timed, multiple choice questions.',

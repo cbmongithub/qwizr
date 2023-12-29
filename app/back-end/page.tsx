@@ -3,12 +3,13 @@ import frameWorkQuizzes from '@/constants/quizzes/frameworks'
 import { Hero } from '@/components/hero'
 import { Quizzes } from '@/components/quizzes'
 
-export default function LandingPage() {
+export default function BackEndPage() {
   return (
     <>
       <Hero
-        links={true}
-        description='How well do you know modern web technologies? Put your skills to the test with our timed, multiple choice qwizzes and earn your spot on the leaderboard.'
+        links={false}
+        title='Back end web development'
+        description='Some say that developing the back end is the toughest. Will you score the highest?'
       />
       <Quizzes quizData={frameWorkQuizzes} />
     </>

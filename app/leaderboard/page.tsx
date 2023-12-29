@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { CalendarIcon } from '@radix-ui/react-icons'
 
-import { Hero } from '@/components/hero'
 import {
   Avatar,
   AvatarFallback,
@@ -101,93 +100,84 @@ const users = [
   },
 ]
 
-export default function LeaderBoardPage() {
+export default function LeaderboardPage() {
   return (
-    <>
-      <Hero
-        title='Global Leaderboard'
-        description='View the top 100 Qwizrs in the world'
-        links={false}
-      />
-      <section className='container relative pb-12 px-6'>
-        <div className='mx-auto max-w-[650px]'>
-          <ScrollArea>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className='text-center'>Rank</TableHead>
-                  <TableHead className='text-center'>Username</TableHead>
-                  <TableHead className='text-center'>Points</TableHead>
-                  <TableHead className='text-center'>Time</TableHead>
-                  <TableHead className='text-center'>Country</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {users.map(user => (
-                  <TableRow key={user.rank}>
-                    <TableCell className='text-center'>
-                      {`#${user.rank}`}
-                    </TableCell>
-                    <TableCell className='text-center'>
-                      <HoverCard>
-                        <HoverCardTrigger asChild>
-                          <Link href={user.profile_url}>
-                            <Button
-                              variant='link'
-                              className='text-foreground hover:text-primary'>
-                              {user.name}
-                            </Button>
-                          </Link>
-                        </HoverCardTrigger>
-                        <HoverCardContent className='w-80'>
-                          <div className='flex justify-between space-x-4'>
-                            <Avatar>
-                              <AvatarImage src={user.img} />
-                              <AvatarFallback>VC</AvatarFallback>
-                            </Avatar>
-                            <div className='space-y-2'>
-                              <div className='flex flex-row justify-between'>
-                                <h4 className='text-sm font-semibold text-left'>
-                                  {user.name}
-                                </h4>
-                                {user.rank === '1' && (
-                                  <Badge variant='default'>🧙 Qwizard</Badge>
-                                )}
-                              </div>
-                              <p className='text-sm text-left'>
-                                {user.description}
-                              </p>
-                              <div className='flex items-center pt-2'>
-                                <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
-                                <span className='text-xs text-muted-foreground'>
-                                  Joined {user.created_at}
-                                </span>
-                              </div>
+    <section className='container relative pb-12'>
+      <div className='mx-auto max-w-[650px]'>
+        <ScrollArea>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className='text-center'>Rank</TableHead>
+                <TableHead className='text-center'>Username</TableHead>
+                <TableHead className='text-center'>Points</TableHead>
+                <TableHead className='text-center'>Time</TableHead>
+                <TableHead className='text-center'>Country</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {users.map(user => (
+                <TableRow key={user.rank}>
+                  <TableCell className='text-center'>
+                    {`#${user.rank}`}
+                  </TableCell>
+                  <TableCell className='text-center'>
+                    <HoverCard>
+                      <HoverCardTrigger asChild>
+                        <Link href={user.profile_url}>
+                          <Button
+                            variant='link'
+                            className='text-foreground hover:text-primary'>
+                            {user.name}
+                          </Button>
+                        </Link>
+                      </HoverCardTrigger>
+                      <HoverCardContent className='w-80'>
+                        <div className='flex justify-between space-x-4'>
+                          <Avatar>
+                            <AvatarImage src={user.img} />
+                            <AvatarFallback>VC</AvatarFallback>
+                          </Avatar>
+                          <div className='space-y-2'>
+                            <div className='flex flex-row justify-between'>
+                              <h4 className='text-sm font-semibold text-left'>
+                                {user.name}
+                              </h4>
+                              {user.rank === '1' && (
+                                <Badge variant='default'>🧙 Qwizard</Badge>
+                              )}
+                            </div>
+                            <p className='text-sm text-left'>
+                              {user.description}
+                            </p>
+                            <div className='flex items-center pt-2'>
+                              <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
+                              <span className='text-xs text-muted-foreground'>
+                                Joined {user.created_at}
+                              </span>
                             </div>
                           </div>
-                        </HoverCardContent>
-                      </HoverCard>
-                    </TableCell>
-                    <TableCell className='text-center'>
-                      {user.total_points}
-                    </TableCell>
-                    <TableCell className='text-center'>
-                      {user.total_time}
-                    </TableCell>
-                    <TableCell className='text-center'>
-                      {user.country}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            <ScrollBar
-              orientation='horizontal'
-              className='invisible'
-            />
-          </ScrollArea>
-        </div>
-      </section>
-    </>
+                        </div>
+                      </HoverCardContent>
+                    </HoverCard>
+                  </TableCell>
+                  <TableCell className='text-center'>
+                    {user.total_points}
+                  </TableCell>
+                  <TableCell className='text-center'>
+                    {user.total_time}
+                  </TableCell>
+                  <TableCell className='text-center'>{user.country}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <ScrollBar
+            orientation='horizontal'
+            className='invisible'
+          />
+        </ScrollArea>
+      </div>
+    </section>
   )
 }

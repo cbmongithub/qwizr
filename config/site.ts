@@ -32,6 +32,32 @@ export const siteConfig = {
       href: '/login',
     },
   ],
+  quizNav: [
+    {
+      name: 'Languages',
+      href: '/languages',
+    },
+    {
+      name: 'Frameworks',
+      href: '/frameworks',
+    },
+    {
+      name: 'Front-end',
+      href: '/front-end',
+    },
+    {
+      name: 'Back-end',
+      href: '/back-end',
+    },
+    {
+      name: "API's",
+      href: '/apis',
+    },
+    {
+      name: 'Testing',
+      href: '/testing',
+    },
+  ],
 }
 
 export type SiteConfig = typeof siteConfig

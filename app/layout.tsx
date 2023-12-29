@@ -4,6 +4,8 @@ import { Metadata, Viewport } from 'next'
 import { siteConfig } from '@/config'
 import { cn, fontSans } from '@/lib'
 
+import { Hero } from '@/components/hero'
+import { QuizNav } from '@/components/quiz-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -49,7 +51,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange>
           <SiteHeader />
-          <main>{children}</main>
+          <main className='w-full flex flex-col justify-center items-center pb-12 mx-auto px-6'>
+            {children}
+          </main>
           <SiteFooter />
         </ThemeProvider>
       </body>

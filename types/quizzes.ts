@@ -1,10 +1,4 @@
-export interface QuizzesProps {
-  id?: number
-  key?: string
-  title?: string
-  duration?: number
-  description?: string
-  concepts?: string
+export interface QuizListProps {
   content?: {
     question: string
     answerOptions: (
@@ -21,6 +15,16 @@ export interface QuizzesProps {
 }
 ;[]
 
+export interface QuizNavProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export interface QuizCardProps {
+  slug: string
+  title: string
+  duration: number
+  description: string
+  concepts: string
+}
+
 export interface QuizDataProps {
-  data?: QuizzesProps[]
+  quizData: QuizCardProps[]
 }

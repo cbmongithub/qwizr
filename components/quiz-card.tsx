@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { cn } from '@/lib'
 import { Clock5Icon } from 'lucide-react'
 
-import type { QuizzesProps } from '@/types/quizzes'
+import type { QuizCardProps } from '@/types/quizzes'
 
 import {
   Badge,
@@ -18,12 +18,12 @@ import {
 } from './ui'
 
 export function QuizCard({
-  id,
+  slug,
   title,
   duration,
   description,
   concepts,
-}: QuizzesProps) {
+}: QuizCardProps) {
   return (
     <Card>
       <CardHeader>
@@ -49,7 +49,7 @@ export function QuizCard({
       <CardFooter>
         <Link
           className={cn(buttonVariants({ variant: 'default', width: 'full' }))}
-          href={`/quiz/${id}`}>
+          href={`/quiz/${slug}`}>
           Launch Quiz &rarr;
         </Link>
       </CardFooter>
