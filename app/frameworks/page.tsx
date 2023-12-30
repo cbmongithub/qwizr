@@ -1,4 +1,4 @@
-import frameWorkQuizzes from '@/constants/quizzes/frameworks'
+import { frameWorksQuizzes } from '@/quizzes'
 
 import { Hero } from '@/components/hero'
 import { Quizzes } from '@/components/quizzes'
@@ -11,7 +11,7 @@ export default function FrameworksPage() {
         title='Frameworks and Libraries'
         description='Put your framework knowledge to the test with our multiple choice timed qwizzes'
       />
-      <Quizzes quizData={frameWorkQuizzes} />
+      <Quizzes quizzes={frameWorksQuizzes} />
     </>
   )
 }

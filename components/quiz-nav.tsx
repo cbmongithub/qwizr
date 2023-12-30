@@ -3,24 +3,26 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { siteConfig } from '@/config'
+import { useScroll } from '@/hooks'
 import { cn } from '@/lib'
+import { QuizNavProps } from '@/types'
 
-import { QuizNavProps } from '@/types/quizzes'
-
-import { ScrollArea, ScrollBar } from './ui'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
 export function QuizNav({ className, ...props }: QuizNavProps) {
   const pathname = usePathname()
+  const ref = useScroll()
 
   return (
-    <ScrollArea className='w-full md:max-w-2xl lg:max-w-full whitespace-nowrap text-primary'>
+    <ScrollArea className='w-full whitespace-nowrap text-primary'>
       <div
         className={cn('flex w-max space-x-4 pr-4', className)}
         {...props}>
         {siteConfig.quizNav.map((nav, index) => (
           <div
-            key={`quizNav_tab_${index}`}
-            className='overflow-x-hidden'>
+            key={`quizNav_link_${index}`}
+            ref={ref}
+            className='overflow-hidden'>
             <Link
               href={nav.href}
               className={cn(
@@ -29,7 +31,7 @@ export function QuizNav({ className, ...props }: QuizNavProps) {
                   ? 'bg-muted font-medium text-primary dark:bg-primary dark:text-foreground'
                   : 'text-muted-foreground'
               )}>
-              {nav.name}
+              {nav.title}
             </Link>
           </div>
         ))}

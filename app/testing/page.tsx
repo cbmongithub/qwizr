@@ -1,4 +1,4 @@
-import frameWorkQuizzes from '@/constants/quizzes/frameworks'
+import { frameWorksQuizzes } from '@/quizzes'
 
 import { Hero } from '@/components/hero'
 import { Quizzes } from '@/components/quizzes'
@@ -11,7 +11,7 @@ export default function TestingPage() {
         title='Writing and understanding tests'
         description='Testing is crucial for scalable web apps. How well do you know tests?'
       />
-      <Quizzes quizData={frameWorkQuizzes} />
+      <Quizzes quizzes={frameWorksQuizzes} />
     </>
   )
 }

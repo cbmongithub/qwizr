@@ -2,7 +2,7 @@
 
 import { siteConfig } from '@/config'
 
-export function SiteFooter() {
+export function Footer() {
   return (
     <footer className='pb-6'>
       <div className='container flex flex-col items-center justify-between gap-4'>

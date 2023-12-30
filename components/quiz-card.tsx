@@ -2,20 +2,20 @@
 
 import Link from 'next/link'
 import { cn } from '@/lib'
+import type { QuizCard } from '@/types'
 import { Clock5Icon } from 'lucide-react'
 
-import type { QuizCardProps } from '@/types/quizzes'
-
 import {
-  Badge,
-  buttonVariants,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from './ui'
+} from '@/components/ui/card'
+
+import { Badge } from './ui/badge'
+import { buttonVariants } from './ui/button'
 
 export function QuizCard({
   slug,
@@ -23,7 +23,7 @@ export function QuizCard({
   duration,
   description,
   concepts,
-}: QuizCardProps) {
+}: QuizCard) {
   return (
     <Card>
       <CardHeader>

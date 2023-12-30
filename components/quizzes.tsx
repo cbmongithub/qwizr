@@ -1,17 +1,17 @@
 'use client'
 
-import type { QuizDataProps } from '@/types/quizzes'
+import type { Quizzes } from '@/types'
 
 import { QuizCard } from './quiz-card'
 import { QuizNav } from './quiz-nav'
 
-export function Quizzes({ quizData }: QuizDataProps) {
+export function Quizzes({ quizzes }: Quizzes) {
   return (
     <section className='container relative px-0'>
       <QuizNav />
-      <div className='mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3'>
-        {quizData
-          ? quizData.map(quiz => (
+      <div className='overflow-hidden mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3'>
+        {quizzes
+          ? quizzes.map(quiz => (
               <QuizCard
                 key={`quizCard_quiz_${quiz.slug}`}
                 slug={quiz.slug}

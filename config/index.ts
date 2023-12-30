@@ -1,3 +1,3 @@
-import { siteConfig, type SiteConfig } from './site'
+import { siteConfig } from './site'
 
-export { SiteConfig, siteConfig }
+export { siteConfig }

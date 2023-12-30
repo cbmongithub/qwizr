@@ -1,35 +1,23 @@
 'use client'
 
 import Link from 'next/link'
+import { type Hero } from '@/types'
 
 import { Announcement } from './announcement'
 import {
-  Button,
   PageActions,
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from './ui'
+} from './page-header'
+import { Button } from './ui/button'
 
-interface HeroProps {
-  title?: string
-  description?: string
-  links?: boolean
-}
-
-export function Hero({ title, description, links }: HeroProps) {
+export function Hero({ title, description, links }: Hero) {
   return (
     <PageHeader>
       <Announcement />
-      <PageHeaderHeading>
-        {(title ||= 'Quizzes for web development')}
-      </PageHeaderHeading>
-      <PageHeaderDescription>
-        {
-          (description ||=
-            'Take quizzes and compete for the top spot on the leaderboard with Qwizr!')
-        }
-      </PageHeaderDescription>
+      <PageHeaderHeading>{title}</PageHeaderHeading>
+      <PageHeaderDescription>{description}</PageHeaderDescription>
       {links && (
         <PageActions>
           <Link href='/login'>

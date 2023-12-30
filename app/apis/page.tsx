@@ -1,4 +1,4 @@
-import frameWorkQuizzes from '@/constants/quizzes/frameworks'
+import { frameWorksQuizzes } from '@/quizzes'
 
 import { Hero } from '@/components/hero'
 import { Quizzes } from '@/components/quizzes'
@@ -11,7 +11,7 @@ export default function ApisPage() {
         title="API's, data fetching and more"
         description="How well do you know api's? Find out with our series of qwizzes!"
       />
-      <Quizzes quizData={frameWorkQuizzes} />
+      <Quizzes quizzes={frameWorksQuizzes} />
     </>
   )
 }

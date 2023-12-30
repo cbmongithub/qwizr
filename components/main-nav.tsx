@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { siteConfig } from '@/config'
 
-import { Button, Icons } from '@/components/ui'
+import { Icons } from './icons'
+import { Button } from './ui/button'
 
 export function MainNav() {
   return (

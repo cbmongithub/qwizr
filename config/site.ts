@@ -34,27 +34,27 @@ export const siteConfig = {
   ],
   quizNav: [
     {
-      name: 'Languages',
+      title: 'Languages',
       href: '/languages',
     },
     {
-      name: 'Frameworks',
+      title: 'Frameworks',
       href: '/frameworks',
     },
     {
-      name: 'Front-end',
+      title: 'Front-end',
       href: '/front-end',
     },
     {
-      name: 'Back-end',
+      title: 'Back-end',
       href: '/back-end',
     },
     {
-      name: "API's",
+      title: "API's",
       href: '/apis',
     },
     {
-      name: 'Testing',
+      title: 'Testing',
       href: '/testing',
     },
   ],
