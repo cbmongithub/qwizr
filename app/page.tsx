@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib'
-import { frameWorksQuizzes } from '@/quizzes'
+import { frameWorksQwizzes } from '@/qwizzes'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Announcement } from '@/components/announcement'
@@ -10,8 +10,8 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/page-header'
-import { QuizNav } from '@/components/quiz-nav'
-import { Quizzes } from '@/components/quizzes'
+import { QwizNav } from '@/components/qwiz-nav'
+import { Qwizzes } from '@/components/qwizzes'
 
 export default function LandingPage() {
   return (
@@ -42,10 +42,10 @@ export default function LandingPage() {
           </Link>
         </PageActions>
       </PageHeader>
-      <QuizNav />
+      <QwizNav />
       <section>
         <div className='overflow-hidden rounded-[0.5rem] bg-background'>
-          <Quizzes quizzes={frameWorksQuizzes} />
+          <Qwizzes qwizzes={frameWorksQwizzes} />
         </div>
       </section>
     </div>

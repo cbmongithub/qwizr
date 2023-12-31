@@ -77,9 +77,9 @@ export function MobileNav() {
         </div>
         <div className='flex flex-col space-y-3 mt-6'>
           <span className='font-bold text-md text-center'>Qwizzes</span>
-          {siteConfig.quizNav.map((item, index) => (
+          {siteConfig.qwizNav.map((item, index) => (
             <MobileLink
-              key={`quizNav_link_${index}`}
+              key={`qwizNav_link_${index}`}
               className={cn(
                 'flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary dark:hover:text-secondary-foreground',
                 pathname === item.href

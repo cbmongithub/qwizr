@@ -3,7 +3,7 @@ export const siteConfig = {
   url: 'https://qwizr.com',
   ogImage: 'https://qwizr.com/og.jpg',
   description:
-    'Take quizzes and compete for the top spot on the leaderboard with Qwizr! Will you become the next Qwizard?',
+    'Take qwizzes and compete for the top spot on the leaderboard with Qwizr! Will you become the next Qwizard?',
   links: {
     twitter: 'https://twitter.com/_coderchris',
     github: 'https://github.com/christianbmartinez/',
@@ -32,30 +32,30 @@ export const siteConfig = {
       href: '/login',
     },
   ],
-  quizNav: [
+  qwizNav: [
     {
       title: 'Languages',
-      href: '/quizzes/languages',
+      href: '/qwizzes/languages',
     },
     {
       title: 'Frameworks',
-      href: '/quizzes/frameworks',
+      href: '/qwizzes/frameworks',
     },
     {
       title: 'Front-end',
-      href: '/quizzes/front-end',
+      href: '/qwizzes/front-end',
     },
     {
       title: 'Back-end',
-      href: '/quizzes/back-end',
+      href: '/qwizzes/back-end',
     },
     {
       title: "API's",
-      href: '/quizzes/apis',
+      href: '/qwizzes/apis',
     },
     {
       title: 'Testing',
-      href: '/quizzes/testing',
+      href: '/qwizzes/testing',
     },
   ],
 }

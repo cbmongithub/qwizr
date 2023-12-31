@@ -2,9 +2,15 @@ export type Layout = {
   children: React.ReactNode
 }
 
-export interface QuizNavProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type QwizPage = {
+  params: {
+    slug: string
+  }
+}
 
-export type Quiz = {
+export interface QwizNavProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export type Qwiz = {
   question: string
   answerOptions: (
     | {
@@ -19,7 +25,7 @@ export type Quiz = {
 }
 ;[]
 
-export type QuizCard = {
+export type QwizCard = {
   slug: string
   title: string
   description: string
@@ -28,6 +34,6 @@ export type QuizCard = {
 }
 ;[]
 
-export type Quizzes = {
-  quizzes: QuizCard[]
+export type Qwizzes = {
+  qwizzes: QwizCard[]
 }
