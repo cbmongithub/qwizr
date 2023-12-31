@@ -10,24 +10,22 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/page-header'
-import { QwizNav } from '@/components/qwiz-nav'
 import { Qwizzes } from '@/components/qwizzes'
+import { QwizzesNav } from '@/components/qwizzes-nav'
 
 export default function LandingPage() {
   return (
-    <div className='container relative'>
+    <>
       <PageHeader>
         <Announcement />
         <PageHeaderHeading className='hidden md:block'>
-          Take Qwizzes on web development
+          Qwizzes on web development
         </PageHeaderHeading>
         <PageHeaderHeading className='md:hidden'>
           Web development Qwizzes
         </PageHeaderHeading>
         <PageHeaderDescription>
-          How well do you know modern web technologies? Put your skills to the
-          test with our timed, multiple choice qwizzes and earn your spot on the
-          leaderboard.
+          Take multiple choice qwizzes and compete on the leaderboard
         </PageHeaderDescription>
         <PageActions>
           <Link
@@ -42,12 +40,12 @@ export default function LandingPage() {
           </Link>
         </PageActions>
       </PageHeader>
-      <QwizNav />
+      <QwizzesNav />
       <section>
         <div className='overflow-hidden rounded-[0.5rem] bg-background'>
           <Qwizzes qwizzes={frameWorksQwizzes} />
         </div>
       </section>
-    </div>
+    </>
   )
 }

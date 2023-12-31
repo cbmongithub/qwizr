@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib'
-import type { QwizCard } from '@/types'
+import type { QwizInfoCard } from '@/types'
 import { Clock5Icon } from 'lucide-react'
 
 import {
@@ -15,13 +15,13 @@ import {
 import { Badge } from './ui/badge'
 import { buttonVariants } from './ui/button'
 
-export function QwizCard({
+export function QwizInfoCard({
   slug,
   title,
   duration,
   description,
   concepts,
-}: QwizCard) {
+}: QwizInfoCard) {
   return (
     <Card>
       <CardHeader>

@@ -11,49 +11,47 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/page-header'
-import { QwizNav } from '@/components/qwiz-nav'
+import { QwizzesNav } from '@/components/qwizzes-nav'
 
 export const metadata: Metadata = {
-  title: 'Examples',
-  description: 'Check out some examples app built using the components.',
+  title: 'Qwizzes',
+  description:
+    'Qwizzes on modern web development languages, frameworks, and more',
 }
 
 export default function QwizzesLayout({ children }: Layout) {
   return (
     <>
-      <div className='container relative'>
-        <PageHeader>
-          <Announcement />
-          <PageHeaderHeading className='hidden md:block'>
-            Browse through all Qwizzes
-          </PageHeaderHeading>
-          <PageHeaderHeading className='md:hidden'>
-            Browse all Qwizzes
-          </PageHeaderHeading>
-          <PageHeaderDescription>
-            Find a qwiz for web development languages, libraries, front and
-            back-end development and more
-          </PageHeaderDescription>
-          <PageActions>
-            <Link
-              href='/login'
-              className={cn(buttonVariants())}>
-              Login
-            </Link>
-            <Link
-              href='/sign-up'
-              className={cn(buttonVariants({ variant: 'outline' }))}>
-              Signup
-            </Link>
-          </PageActions>
-        </PageHeader>
-        <QwizNav />
-        <section>
-          <div className='overflow-hidden rounded-[0.5rem] bg-background'>
-            {children}
-          </div>
-        </section>
-      </div>
+      <PageHeader>
+        <Announcement />
+        <PageHeaderHeading className='hidden md:block'>
+          Browse through all Qwizzes
+        </PageHeaderHeading>
+        <PageHeaderHeading className='md:hidden'>
+          Browse all Qwizzes
+        </PageHeaderHeading>
+        <PageHeaderDescription>
+          Qwizzes on modern web development languages, frameworks, and more
+        </PageHeaderDescription>
+        <PageActions>
+          <Link
+            href='/login'
+            className={cn(buttonVariants())}>
+            Login
+          </Link>
+          <Link
+            href='/sign-up'
+            className={cn(buttonVariants({ variant: 'outline' }))}>
+            Signup
+          </Link>
+        </PageActions>
+      </PageHeader>
+      <QwizzesNav />
+      <section>
+        <div className='overflow-hidden rounded-[0.5rem] bg-background'>
+          {children}
+        </div>
+      </section>
     </>
   )
 }

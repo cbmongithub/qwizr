@@ -48,7 +48,7 @@ export default function RootLayout({ children }: Layout) {
             disableTransitionOnChange>
             <div className='relative flex min-h-screen flex-col bg-background'>
               <Header />
-              <main className='flex-1'>{children}</main>
+              <main className='flex-1 container relative'>{children}</main>
               <Footer />
             </div>
           </ThemeProvider>

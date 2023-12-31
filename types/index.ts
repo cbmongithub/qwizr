@@ -8,9 +8,10 @@ export type QwizPage = {
   }
 }
 
-export interface QwizNavProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface QwizzesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export type Qwiz = {
+  slug?: string
   question: string
   answerOptions: (
     | {
@@ -25,7 +26,7 @@ export type Qwiz = {
 }
 ;[]
 
-export type QwizCard = {
+export type QwizInfoCard = {
   slug: string
   title: string
   description: string
@@ -35,5 +36,5 @@ export type QwizCard = {
 ;[]
 
 export type Qwizzes = {
-  qwizzes: QwizCard[]
+  qwizzes: QwizInfoCard[]
 }
