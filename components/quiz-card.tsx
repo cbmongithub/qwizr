@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { cn } from '@/lib'
 import type { QuizCard } from '@/types'
@@ -28,11 +26,11 @@ export function QuizCard({
     <Card>
       <CardHeader>
         <div className='flex flex-row justify-between pb-3'>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className='text-xl'>{title}</CardTitle>
           <Badge variant='default'>
             <Clock5Icon className='h-3 w-3' />
             &nbsp;
-            <p className='font-normal text-[0.75rem]'>{duration} hrs</p>
+            <p className='font-normal text-xs'>{duration} hrs</p>
           </Badge>
         </div>
         <CardDescription>{description}</CardDescription>

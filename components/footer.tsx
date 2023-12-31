@@ -1,10 +1,8 @@
-'use client'
-
 import { siteConfig } from '@/config'
 
 export function Footer() {
   return (
-    <footer className='pb-6'>
+    <footer className='pb-6 pt-12'>
       <div className='container flex flex-col items-center justify-between gap-4'>
         <p className='text-balance text-center text-sm leading-loose text-muted-foreground'>
           Built by{' '}

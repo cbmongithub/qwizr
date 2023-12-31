@@ -1,9 +1,10 @@
 import Link from 'next/link'
+import { cn } from '@/lib'
 import { CalendarIcon } from '@radix-ui/react-icons'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import {
   HoverCard,
   HoverCardContent,
@@ -18,7 +19,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Hero } from '@/components/hero'
+import { Announcement } from '@/components/announcement'
+import {
+  PageActions,
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from '@/components/page-header'
 
 const users = [
   {
@@ -103,11 +110,30 @@ const users = [
 export default function LeaderboardPage() {
   return (
     <>
-      <Hero
-        title='Global Leaderboard'
-        description='View the top 100 Qwizrs in the world'
-        links={false}
-      />
+      <PageHeader>
+        <Announcement />
+        <PageHeaderHeading className='hidden md:block'>
+          View the Global Leaderboard
+        </PageHeaderHeading>
+        <PageHeaderHeading className='md:hidden'>
+          Global Leaderboard
+        </PageHeaderHeading>
+        <PageHeaderDescription>
+          View the top 100 Qwizrs in the world
+        </PageHeaderDescription>
+        <PageActions>
+          <Link
+            href='/login'
+            className={cn(buttonVariants())}>
+            Login
+          </Link>
+          <Link
+            href='/sign-up'
+            className={cn(buttonVariants({ variant: 'outline' }))}>
+            Signup
+          </Link>
+        </PageActions>
+      </PageHeader>
       <section className='container relative'>
         <div className='mx-auto max-w-[650px]'>
           <ScrollArea>

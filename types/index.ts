@@ -1,7 +1,5 @@
-export type Hero = {
-  title: string
-  description: string
-  links?: boolean
+export type Layout = {
+  children: React.ReactNode
 }
 
 export interface QuizNavProps extends React.HTMLAttributes<HTMLDivElement> {}

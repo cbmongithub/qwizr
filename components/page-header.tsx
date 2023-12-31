@@ -1,5 +1,3 @@
-'use client'
-
 import { cn } from '@/lib'
 import Balance from 'react-wrap-balancer'
 

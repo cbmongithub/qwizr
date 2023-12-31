@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import { siteConfig } from '@/config'
 import { cn, fontSans } from '@/lib'
+import { Layout } from '@/types'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
@@ -28,33 +29,31 @@ export const viewport: Viewport = {
   ],
 }
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: Layout) {
   return (
-    <html
-      lang='en'
-      suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable
-        )}>
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange>
-          <Header />
-          <main className='w-full flex flex-col justify-center items-center pb-12 mx-auto px-6'>
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
-      </body>
-    </html>
+    <>
+      <html
+        lang='en'
+        suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            'min-h-screen bg-background font-sans antialiased',
+            fontSans.variable
+          )}>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='system'
+            enableSystem
+            disableTransitionOnChange>
+            <div className='relative flex min-h-screen flex-col bg-background'>
+              <Header />
+              <main className='flex-1'>{children}</main>
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
   )
 }
