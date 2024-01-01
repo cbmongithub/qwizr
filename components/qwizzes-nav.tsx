@@ -12,7 +12,7 @@ export function QwizzesNav({ className, ...props }: QwizzesNavProps) {
   const ref = useScroll(pathname)
   return (
     <div
-      className='relative overflow-x-hidden sm:mx-auto lg:mx-0 max-w-2xl'
+      className='relative overflow-x-hidden sm:mx-auto lg:mx-0 w-full'
       ref={ref}>
       <div
         className={cn('mb-4 flex items-center whitespace-nowrap', className)}

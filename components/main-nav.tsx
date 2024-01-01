@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { siteConfig } from '@/config'
+import { cn } from '@/lib'
 
 import { Icons } from './icons'
-import { Button } from './ui/button'
+import { buttonVariants } from './ui/button'
 
 export function MainNav() {
   return (
@@ -21,8 +22,9 @@ export function MainNav() {
         {siteConfig.mainNav.map((item, index) => (
           <Link
             key={`mainNav_link_${index}`}
-            href={item.href}>
-            <Button variant='ghost'>{item.title}</Button>
+            href={item.href}
+            className={cn(buttonVariants({ variant: 'ghost' }))}>
+            {item.title}
           </Link>
         ))}
       </nav>

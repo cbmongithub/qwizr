@@ -1,4 +1,4 @@
-import { QwizCard } from '@/types'
+import { QwizInfoCard } from '@/types'
 
 import angularJsQwiz from './angular-js'
 import expressJsQwiz from './express-js'
@@ -52,7 +52,7 @@ const frameWorksQwizzes = [
     concepts:
       'Routing, Middleware, Request and Response, RESTful APIs, Template Engines, Error Handling, Security, File Uploads, and more.',
   },
-] satisfies QwizCard[]
+] satisfies QwizInfoCard[]
 
 export {
   angularJsQwiz,

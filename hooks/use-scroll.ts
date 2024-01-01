@@ -23,7 +23,8 @@ export default function useScroll(pathname: string) {
         }
       }
     }
-    screen.width < 589 && handleScroll()
+
+    handleScroll()
   }, [pathname])
 
   return ref
