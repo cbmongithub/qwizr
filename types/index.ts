@@ -11,20 +11,12 @@ export type QwizPage = {
 export interface QwizzesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export type Qwiz = {
-  slug?: string
   question: string
-  answerOptions: (
-    | {
-        answer: string
-        isCorrect?: undefined
-      }
-    | {
-        answer: string
-        isCorrect: boolean
-      }
-  )[]
+  answerOptions: { answer: string; isCorrect?: boolean }[]
 }
 ;[]
+
+export type QwizItem = Qwiz
 
 export type QwizInfoCard = {
   slug: string

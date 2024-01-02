@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { buttonVariants } from './ui/button'
 import { Progress } from './ui/progress'
 
-export function Qwiz({ slug, question, answerOptions }: Qwiz) {
+export function Qwiz({ question, answerOptions }: Qwiz) {
   return (
     <div className='py-8 md:py-12 lg:py-24'>
       <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
@@ -69,12 +69,12 @@ export function Qwiz({ slug, question, answerOptions }: Qwiz) {
       <div className='flex w-full items-center justify-between'>
         <Link
           className={cn(buttonVariants({ variant: 'secondary' }))}
-          href={`/qwiz/${slug}`}>
+          href={`/`}>
           &larr; Back
         </Link>
         <Link
           className={cn(buttonVariants({ variant: 'default' }))}
-          href={`/qwiz/`}>
+          href={`/`}>
           Next &rarr;
         </Link>
       </div>
