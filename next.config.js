@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: '/quizzes',
-        destination: '/quizzes/languages',
+        destination: '/quizzes/apis',
         permanent: false,
       },
     ]

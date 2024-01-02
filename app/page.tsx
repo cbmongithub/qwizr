@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib'
-import { frameWorksQwizzes } from '@/qwizzes'
+import { apisQwizzes } from '@/qwizzes'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Announcement } from '@/components/announcement'
@@ -43,7 +43,7 @@ export default function LandingPage() {
       <QwizzesNav />
       <section>
         <div className='overflow-hidden rounded-[0.5rem] bg-background'>
-          <Qwizzes qwizzes={frameWorksQwizzes} />
+          <Qwizzes qwizzes={apisQwizzes} />
         </div>
       </section>
     </>

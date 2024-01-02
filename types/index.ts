@@ -4,7 +4,7 @@ export type Layout = {
 
 export type QwizPage = {
   params: {
-    slug: string
+    slug: string[]
   }
 }
 
