@@ -1,7 +1,7 @@
 [
   {
     "question": "What type of framework is Next?",
-    "answerOptions": [
+    "answers": [
       { "answer": "Frontend" },
       { "answer": "Backend" },
       { "answer": "FullStack", "isCorrect": true },
@@ -10,7 +10,7 @@
   },
   {
     "question": "When was Next released?",
-    "answerOptions": [
+    "answers": [
       { "answer": "September 2019" },
       { "answer": "January 2017" },
       { "answer": "October 2016", "isCorrect": true },
@@ -19,7 +19,7 @@
   },
   {
     "question": "Which CSS Framework does Next use?",
-    "answerOptions": [
+    "answers": [
       { "answer": "Bootstrap" },
       { "answer": "Tailwind", "isCorrect": true },
       { "answer": "Chakra" },
@@ -28,7 +28,7 @@
   },
   {
     "question": "Which class in Tailwind is used to set flex direction of column?",
-    "answerOptions": [
+    "answers": [
       { "answer": "col" },
       { "answer": "col-flex" },
       { "answer": "flex-col", "isCorrect": true },

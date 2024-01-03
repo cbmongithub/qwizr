@@ -15,12 +15,10 @@ export default async function QuizPage({ params }: QwizPage) {
     )
   }
   const qwizData = (await JSON.parse(qwiz)) as QwizItem
+
   return (
     <section className='my-32 md:my-24 lg:my-12 flex flex-col items-center justify-center'>
-      <Qwiz
-        question={''}
-        answerOptions={[]}
-      />
+      <Qwiz qwizData={qwizData} />
     </section>
   )
 }
