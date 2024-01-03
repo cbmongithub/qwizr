@@ -92,7 +92,7 @@ export function Qwiz({ qwizData }: QwizData) {
           variant='outline'
           onClick={() => handleBack}>
           <span className='sr-only'>Back</span>
-          &larrr; Back
+          &larr; Back
         </Button>
         <Button
           variant='default'
