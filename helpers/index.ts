@@ -1,4 +1,4 @@
 import { formatSlug } from './format-slug'
-import { readQuiz } from './read-quiz'
+import { readQwiz } from './read-qwiz'
 
-export { formatSlug, readQuiz }
+export { formatSlug, readQwiz }

@@ -34,8 +34,12 @@ export const siteConfig = {
   ],
   qwizNav: [
     {
-      title: 'Languages',
-      href: '/qwizzes/languages',
+      title: "API's",
+      href: '/qwizzes/apis',
+    },
+    {
+      title: 'Back-end',
+      href: '/qwizzes/back-end',
     },
     {
       title: 'Frameworks',
@@ -46,12 +50,8 @@ export const siteConfig = {
       href: '/qwizzes/front-end',
     },
     {
-      title: 'Back-end',
-      href: '/qwizzes/back-end',
-    },
-    {
-      title: "API's",
-      href: '/qwizzes/apis',
+      title: 'Languages',
+      href: '/qwizzes/languages',
     },
     {
       title: 'Testing',

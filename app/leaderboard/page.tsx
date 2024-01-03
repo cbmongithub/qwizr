@@ -135,7 +135,7 @@ export default function LeaderboardPage() {
         </PageActions>
       </PageHeader>
       <section className='container relative'>
-        <div className='mx-auto max-w-[650px]'>
+        <div className='mx-auto max-w-[750px]'>
           <ScrollArea>
             <Table>
               <TableHeader>

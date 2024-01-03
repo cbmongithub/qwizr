@@ -1,7 +1,7 @@
-import { frameWorksQwizzes } from '@/qwizzes'
+import { languagesQwizzes } from '@/qwizzes'
 
 import { Qwizzes } from '@/components/qwizzes'
 
 export default function LanguagesPage() {
-  return <Qwizzes qwizzes={frameWorksQwizzes} />
+  return <Qwizzes qwizzes={languagesQwizzes} />
 }

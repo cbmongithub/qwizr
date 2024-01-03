@@ -1,18 +1,39 @@
-import Link from 'next/link'
-import { cn } from '@/lib'
-import { type Qwiz } from '@/types'
+'use client'
+
+import { useState } from 'react'
+import { type QwizData } from '@/types'
 
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
-import { buttonVariants } from './ui/button'
+import { Button } from './ui/button'
 import { Progress } from './ui/progress'
 
-export function Qwiz({ question, answerOptions }: Qwiz) {
+export function Qwiz({ qwizData }: QwizData) {
+  console.log(qwizData)
+  //const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
+  const questionLength = 10
+  const [questionNumber, setQuestionNumber] = useState(0)
+  //const [totalScore, setTotalScore] = useState(0)
+  //const [quizQuestion, setQuizQuestion] = useState(question)
+  //const [quizAnswers, setQuizAnswers] = useState(answers)
+
+  function handleNext(e: MouseEvent | KeyboardEvent) {
+    e.preventDefault()
+    setQuestionNumber(
+      questionNumber === questionLength ? questionLength : questionNumber + 1
+    )
+  }
+
+  function handleBack(e: MouseEvent | KeyboardEvent) {
+    e.preventDefault()
+    setQuestionNumber(questionNumber === 0 ? 0 : questionNumber - 1)
+  }
+
   return (
     <div className='py-8 md:py-12 lg:py-24'>
       <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
-        Question 1 of 10
+        {`Question 1 of 10`}
       </p>
       <h1 className='text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl mb-8'>
         What type of library is React?
@@ -67,16 +88,18 @@ export function Qwiz({ question, answerOptions }: Qwiz) {
         </div>
       </RadioGroup>
       <div className='flex w-full items-center justify-between'>
-        <Link
-          className={cn(buttonVariants({ variant: 'secondary' }))}
-          href={`/`}>
-          &larr; Back
-        </Link>
-        <Link
-          className={cn(buttonVariants({ variant: 'default' }))}
-          href={`/`}>
+        <Button
+          variant='outline'
+          onClick={() => handleBack}>
+          <span className='sr-only'>Back</span>
+          &larrr; Back
+        </Button>
+        <Button
+          variant='default'
+          onClick={() => handleNext}>
+          <span className='sr-only'>Next</span>
           Next &rarr;
-        </Link>
+        </Button>
       </div>
     </div>
   )

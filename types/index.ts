@@ -4,7 +4,7 @@ export type Layout = {
 
 export type QwizPage = {
   params: {
-    slug: string
+    slug: string[]
   }
 }
 
@@ -12,9 +12,13 @@ export interface QwizzesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export type Qwiz = {
   question: string
-  answerOptions: { answer: string; isCorrect?: boolean }[]
+  answers: { answer: string; isCorrect?: boolean }[]
 }
 ;[]
+
+export type QwizData = {
+  qwizData: Qwiz
+}
 
 export type QwizItem = Qwiz
 
