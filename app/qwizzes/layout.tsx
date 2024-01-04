@@ -46,7 +46,6 @@ export default function QwizzesLayout({ children }: Layout) {
           </Link>
         </PageActions>
       </PageHeader>
-      <QwizzesNav />
       <section>
         <div className='overflow-hidden rounded-[0.5rem] bg-background'>
           {children}

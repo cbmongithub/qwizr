@@ -17,7 +17,7 @@ export type Qwiz = {
 ;[]
 
 export type QwizData = {
-  qwizData: Qwiz
+  qwizData?: Qwiz
 }
 
 export type QwizItem = Qwiz

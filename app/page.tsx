@@ -40,7 +40,6 @@ export default function LandingPage() {
           </Link>
         </PageActions>
       </PageHeader>
-      <QwizzesNav />
       <section>
         <div className='overflow-hidden rounded-[0.5rem] bg-background'>
           <Qwizzes qwizzes={apisQwizzes} />

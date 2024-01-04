@@ -9,15 +9,14 @@ import {
 } from '@/components/page-header'
 
 import { buttonVariants } from './ui/button'
-import { Card } from './ui/card'
 
 export function NotFound({ resource }: { resource: string }) {
   return (
-    <Card className='px-4 max-w-[750px]'>
+    <div className='max-w-[650px] sm:max-w-none'>
       <PageHeader>
         <PageHeaderHeading>{`${resource} not found`}</PageHeaderHeading>
         <PageHeaderDescription>
-          {`The ${resource} you have requested may have been permanently moved,
+          {`The ${resource.toLocaleLowerCase()} you have requested may have been permanently moved,
           or is under construction.`}
         </PageHeaderDescription>
         <PageActions>
@@ -28,6 +27,6 @@ export function NotFound({ resource }: { resource: string }) {
           </Link>
         </PageActions>
       </PageHeader>
-    </Card>
+    </div>
   )
 }

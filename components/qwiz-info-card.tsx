@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { cn } from '@/lib'
 import type { QwizInfoCard } from '@/types'
 import { Clock5Icon } from 'lucide-react'
@@ -25,7 +24,6 @@ export function QwizInfoCard({
   description,
   concepts,
 }: QwizInfoCard) {
-  const pathname = usePathname()
   return (
     <Card>
       <CardHeader>

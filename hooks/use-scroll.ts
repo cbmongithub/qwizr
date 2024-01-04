@@ -5,21 +5,12 @@ export default function useScroll(pathname: string) {
 
   useEffect(() => {
     if (ref.current) {
-      if (pathname === '/qwizzes/frameworks') {
-        ref.current.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'smooth',
-        })
-      } else if (pathname === '/qwizzes/front-end') {
-        ref.current.scrollTo({
-          top: 0,
-          left: 557,
-          behavior: 'smooth',
-        })
-      } else {
-        return
-      }
+      const { top, left } = ref.current.getBoundingClientRect()
+      ref.current.scrollTo({
+        top: top,
+        left: left,
+        behavior: 'smooth',
+      })
     }
   }, [pathname])
 

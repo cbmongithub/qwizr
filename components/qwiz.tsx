@@ -10,7 +10,7 @@ import { Button } from './ui/button'
 import { Progress } from './ui/progress'
 
 export function Qwiz({ qwizData }: QwizData) {
-  console.log(qwizData)
+  //console.log(qwizData)
   //const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
   const questionLength = 10
   const [questionNumber, setQuestionNumber] = useState(0)
