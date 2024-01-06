@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: 'Qwizr',
   url: 'https://qwizr.com',
+  dev_url: 'http://localhost:3000',
   ogImage: 'https://qwizr.com/og.jpg',
   description:
     'Take qwizzes and compete for the top spot on the leaderboard with Qwizr! Will you become the next Qwizard?',

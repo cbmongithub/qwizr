@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { cn } from '@/lib'
-import { apisQwizzes } from '@/qwizzes'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Announcement } from '@/components/announcement'
@@ -11,7 +10,8 @@ import {
   PageHeaderHeading,
 } from '@/components/page-header'
 import { Qwizzes } from '@/components/qwizzes'
-import { QwizzesNav } from '@/components/qwizzes-nav'
+
+import { apisQwizzes } from '../app/qwizzes/apis/page'
 
 export default function LandingPage() {
   return (

@@ -8,6 +8,8 @@ export type QwizPage = {
   }
 }
 
+export type QwizRoute = QwizPage
+
 export interface QwizzesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export type Qwiz = {
@@ -17,7 +19,7 @@ export type Qwiz = {
 ;[]
 
 export type QwizData = {
-  qwizData?: Qwiz
+  qwizData?: Qwiz | Response
 }
 
 export type QwizItem = Qwiz
