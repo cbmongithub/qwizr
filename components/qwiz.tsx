@@ -1,106 +1,89 @@
 'use client'
 
 import { useState } from 'react'
-import { type QwizData } from '@/types'
+import { type Qwiz, type QwizData } from '@/types'
 
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
+import { NotFound } from './not-found'
 import { Button } from './ui/button'
 import { Progress } from './ui/progress'
 
 export function Qwiz({ qwizData }: QwizData) {
-  console.log('quizData from the qwiz component: ', qwizData)
-  //const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
-  const questionLength = 10
-  const [questionNumber, setQuestionNumber] = useState(0)
-  //const [totalScore, setTotalScore] = useState(0)
-  //const [quizQuestion, setQuizQuestion] = useState(question)
-  //const [quizAnswers, setQuizAnswers] = useState(answers)
+  const [questionNumber, setQuestionNumber] = useState<number>(0)
+  const [score, setScore] = useState<number>(0)
 
-  function handleNext(e: MouseEvent | KeyboardEvent) {
-    e.preventDefault()
-    setQuestionNumber(
-      questionNumber === questionLength ? questionLength : questionNumber + 1
+  if (!qwizData) {
+    return (
+      <div className='mt-52 flex flex-col items-center justify-center'>
+        <NotFound resource='Qwiz' />
+      </div>
     )
   }
 
-  function handleBack(e: MouseEvent | KeyboardEvent) {
+  function handleNext(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    setQuestionNumber(questionNumber === 0 ? 0 : questionNumber - 1)
+    if (qwizData && questionNumber < qwizData.length - 1) {
+      setQuestionNumber(prevNumber => prevNumber + 1)
+    }
   }
 
+  function handleBack(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    if (questionNumber > 0) {
+      setQuestionNumber(prevNumber => prevNumber - 1)
+    }
+  }
+
+  const progressValue = (questionNumber * 100) / (qwizData.length - 1)
+
+  const currentQuestion = qwizData[questionNumber]
+
   return (
-    <div className='py-8 md:py-12 lg:py-24'>
+    <>
       <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
-        {`Question 1 of 10`}
+        {`Question ${questionNumber + 1} of ${qwizData.length}`}
       </p>
-      <h1 className='text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl mb-8'>
-        What type of library is React?
+      <h1 className='text-center text-2xl sm:text-3xl font-bold leading-tight tracking-tighter md:text-4xl mb-8'>
+        {currentQuestion?.question}
       </h1>
-      <Progress value={10} />
-      <RadioGroup
-        className='my-12'
-        name='qwiz'>
-        <div className='flex items-center space-x-2 text-card-foreground py-2'>
-          <RadioGroupItem
-            value='Front-End'
-            id='1'
-          />
-          <Label
-            className='text-sm md:text-lg'
-            htmlFor='1'>
-            Front-End
-          </Label>
+      <Progress value={progressValue} />
+      <div className='w-full'>
+        <RadioGroup
+          className='my-6'
+          name='qwiz'>
+          {currentQuestion?.answers.map((answer, index) => (
+            <div
+              key={index}
+              className='flex items-center space-x-2 text-card-foreground py-2'>
+              <RadioGroupItem
+                value={answer.answer}
+                id={`${index + 1}`}
+              />
+              <Label
+                className='text-sm md:text-md'
+                htmlFor={`${index + 1}`}>
+                {answer.answer}
+              </Label>
+            </div>
+          ))}
+        </RadioGroup>
+        <div className='flex w-full items-center justify-between'>
+          <Button
+            variant='outline'
+            onClick={handleBack}>
+            <span className='sr-only'>Back</span>
+            &larr; Back
+          </Button>
+          <Button
+            variant='default'
+            onClick={handleNext}>
+            <span className='sr-only'>Next</span>
+            Next &rarr;
+          </Button>
         </div>
-        <div className='flex items-center space-x-2 text-card-foreground py-2'>
-          <RadioGroupItem
-            value='Back-End'
-            id='2'
-          />
-          <Label
-            className='text-sm md:text-lg'
-            htmlFor='2'>
-            Back-End
-          </Label>
-        </div>
-        <div className='flex items-center space-x-2 text-card-foreground py-2'>
-          <RadioGroupItem
-            value='Full-Stack'
-            id='3'
-          />
-          <Label
-            className='text-sm md:text-lg'
-            htmlFor='3'>
-            Full-Stack
-          </Label>
-        </div>
-        <div className='flex items-center space-x-2 py-2'>
-          <RadioGroupItem
-            value='None of the above'
-            id='4'
-          />
-          <Label
-            className='text-sm md:text-lg'
-            htmlFor='4'>
-            None of the above
-          </Label>
-        </div>
-      </RadioGroup>
-      <div className='flex w-full items-center justify-between'>
-        <Button
-          variant='outline'
-          onClick={() => handleBack}>
-          <span className='sr-only'>Back</span>
-          &larr; Back
-        </Button>
-        <Button
-          variant='default'
-          onClick={() => handleNext}>
-          <span className='sr-only'>Next</span>
-          Next &rarr;
-        </Button>
       </div>
-    </div>
+    </>
   )
 }

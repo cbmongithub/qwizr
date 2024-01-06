@@ -1,6 +1,6 @@
 import { QwizItem } from '@/types'
 
-const qwiz = [
+const qwizData = [
   {
     question: 'What type of framework is Next?',
     answers: [
@@ -40,4 +40,4 @@ const qwiz = [
   },
 ] satisfies QwizItem[]
 
-export default qwiz
+export default qwizData

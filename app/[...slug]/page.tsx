@@ -1,4 +1,3 @@
-import { formatSlug } from '@/helpers'
 import { QwizPage } from '@/types'
 
 import { NotFound } from '@/components/not-found'
@@ -11,17 +10,19 @@ export default async function QuizPage({ params }: QwizPage) {
 
   if (!res.ok) {
     return (
-      <section className='mt-52 flex flex-col items-center justify-center'>
-        <NotFound resource={`${formatSlug(params.slug[1])} qwiz`} />
-      </section>
+      <div className='mt-52 flex flex-col items-center justify-center'>
+        <NotFound resource='Data' />
+      </div>
     )
   }
 
-  const qwizData = await res.json()
+  const { qwizData } = await res.json()
 
   return (
-    <section className='my-32 md:my-20 lg:my-8 flex flex-col items-center justify-center'>
-      <Qwiz qwizData={qwizData} />
+    <section className='container relative'>
+      <div className='my-[11rem] flex flex-col items-center justify-center mx-auto max-w-[650px]'>
+        <Qwiz qwizData={qwizData} />
+      </div>
     </section>
   )
 }

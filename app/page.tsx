@@ -11,8 +11,6 @@ import {
 } from '@/components/page-header'
 import { Qwizzes } from '@/components/qwizzes'
 
-import { apisQwizzes } from '../app/qwizzes/apis/page'
-
 export default function LandingPage() {
   return (
     <>
@@ -42,7 +40,7 @@ export default function LandingPage() {
       </PageHeader>
       <section>
         <div className='overflow-hidden rounded-[0.5rem] bg-background'>
-          <Qwizzes qwizzes={apisQwizzes} />
+          <Qwizzes qwizzes={[]} />
         </div>
       </section>
     </>
