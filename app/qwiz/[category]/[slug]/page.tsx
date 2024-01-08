@@ -48,7 +48,7 @@ export default async function QwizPage({
   if (!res.ok) {
     return (
       <div className='flex flex-col items-center justify-center'>
-        <NotFound resource={`${category.toLocaleUpperCase()} qwiz`} />
+        <NotFound resource={`${formatSlug(category)} qwiz`} />
       </div>
     )
   }
