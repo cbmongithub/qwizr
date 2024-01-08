@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import Link from 'next/link'
 import { cn } from '@/lib'
 import { type Layout } from '@/types'
@@ -11,13 +10,6 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/page-header'
-import { QwizzesNav } from '@/components/qwizzes-nav'
-
-export const metadata: Metadata = {
-  title: 'Qwizzes',
-  description:
-    'Qwizzes on modern web development languages, frameworks, and more',
-}
 
 export default function QwizzesLayout({ children }: Layout) {
   return (

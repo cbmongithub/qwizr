@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import Link, { LinkProps } from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { siteConfig } from '@/config'
 import { cn } from '@/lib'
 
 import { Icons } from './icons'
+import { MobileLink } from './mobile-link'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 
@@ -22,31 +22,7 @@ export function MobileNav() {
         <Button
           variant='outline'
           className='absolute text-base focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden'>
-          <svg
-            strokeWidth='1.5'
-            viewBox='0 0 24 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-5 w-5'>
-            <path
-              d='M3 5H11'
-              stroke='currentColor'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'></path>
-            <path
-              d='M3 12H16'
-              stroke='currentColor'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'></path>
-            <path
-              d='M3 19H21'
-              stroke='currentColor'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'></path>
-          </svg>
+          <Icons.menu className='w-5 h-5' />
           <span className='sr-only'>Toggle Menu</span>
         </Button>
       </SheetTrigger>
@@ -94,33 +70,5 @@ export function MobileNav() {
         </div>
       </SheetContent>
     </Sheet>
-  )
-}
-
-interface MobileLinkProps extends LinkProps {
-  onOpenChange?: (open: boolean) => void
-  children: React.ReactNode
-  className?: string
-}
-
-function MobileLink({
-  href,
-  onOpenChange,
-  className,
-  children,
-  ...props
-}: MobileLinkProps) {
-  const router = useRouter()
-  return (
-    <Link
-      href={href}
-      onClick={() => {
-        router.push(href.toString())
-        onOpenChange?.(false)
-      }}
-      className={cn(className)}
-      {...props}>
-      {children}
-    </Link>
   )
 }

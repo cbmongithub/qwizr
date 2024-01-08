@@ -3,8 +3,7 @@ export function formatSlug(slug: string): string {
 
   const formattedSlug = `${
     firstWord.charAt(0).toUpperCase() + firstWord.slice(1)
-  } 
-   ${secondWord}`
+  }${secondWord ? ' ' + secondWord : ''}`
 
   return formattedSlug
 }

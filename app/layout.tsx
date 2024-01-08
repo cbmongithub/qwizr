@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import { siteConfig } from '@/config'
 import { cn, fontSans } from '@/lib'
-import { Layout } from '@/types'
+import { type Layout } from '@/types'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
@@ -11,8 +11,8 @@ import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: `${siteConfig.name} - Home`,
+    template: `${siteConfig.name} - %s`,
   },
   description: siteConfig.description,
   icons: {

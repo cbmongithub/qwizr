@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { cn } from '@/lib'
-import type { QwizInfoCard } from '@/types'
+import { type QwizInfoCard } from '@/types'
 import { Clock5Icon } from 'lucide-react'
 
 import {
@@ -18,6 +18,7 @@ import { Badge } from './ui/badge'
 import { buttonVariants } from './ui/button'
 
 export function QwizInfoCard({
+  category,
   slug,
   title,
   duration,
@@ -49,7 +50,7 @@ export function QwizInfoCard({
       <CardFooter>
         <Link
           className={cn(buttonVariants({ variant: 'default', width: 'full' }))}
-          href={slug}>
+          href={`/qwiz/${category}/${slug}`}>
           Launch Qwiz &rarr;
         </Link>
       </CardFooter>

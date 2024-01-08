@@ -1,8 +1,9 @@
 import { QwizInfoCard } from '@/types'
 
-export const frameWorksQwizzes = [
+export const qwizzes = [
   {
-    slug: '/qwizzes/frameworks/next-js',
+    category: 'frameworks',
+    slug: 'next-js',
     title: 'Next Js',
     description:
       'Test your Next.js skills with 80 timed, multiple choice questions.',
@@ -11,7 +12,8 @@ export const frameWorksQwizzes = [
       'Pages, App, SSR, SSG, API Routes, Routing, File-Based Routing, Data Fetching, Image Optimization, Automatic Code Splitting, and more.',
   },
   {
-    slug: '/qwizzes/frameworks/react-js',
+    category: 'frameworks',
+    slug: 'react-js',
     title: 'React JS',
     description:
       'Test your React.js skills with 80 timed, multiple choice questions.',
@@ -20,7 +22,8 @@ export const frameWorksQwizzes = [
       'Components, JSX, Virtual DOM, Props, State, Lifecycle Methods, Hooks, Conditional Rendering, Event Handling, Keys, and more.',
   },
   {
-    slug: '/qwizzes/frameworks/angular-js',
+    category: 'frameworks',
+    slug: 'angular-js',
     title: 'Angular JS',
     description:
       'Test your Angular skills with 80 timed, multiple choice questions.',
@@ -29,7 +32,8 @@ export const frameWorksQwizzes = [
       'Modules, Components, Directives, Services, Dependency Injection, Pipes, Forms, HTTP Client, Routing, RxJS, and more.',
   },
   {
-    slug: '/qwizzes/frameworks/vue-js',
+    category: 'frameworks',
+    slug: 'vue-js',
     title: 'Vue JS',
     description:
       'Test your Vue.js skills with 80 timed, multiple choice questions.',
@@ -38,7 +42,8 @@ export const frameWorksQwizzes = [
       'Vue Instance, Components, Templates, Directives, Reactivity, Computed Properties, Watchers, Lifecycle Hooks, Routing, Vuex, and more.',
   },
   {
-    slug: '/qwizzes/frameworks/express-js',
+    category: 'frameworks',
+    slug: 'express-js',
     title: 'Express JS',
     description:
       'Test your Express.js skills with 80 timed, multiple choice questions.',
@@ -47,3 +52,5 @@ export const frameWorksQwizzes = [
       'Routing, Middleware, Request and Response, RESTful APIs, Template Engines, Error Handling, Security, File Uploads, and more.',
   },
 ] satisfies QwizInfoCard[]
+
+export default qwizzes

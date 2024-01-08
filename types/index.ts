@@ -1,14 +1,29 @@
+import { LinkProps } from 'next/link'
+
+export type Icon = React.HTMLAttributes<SVGElement>
+
 export type Layout = {
   children: React.ReactNode
 }
 
-export type QwizPage = {
+export interface MobileLinkProps extends LinkProps {
+  onOpenChange?: (open: boolean) => void
+  children: React.ReactNode
+  className?: string
+}
+
+export type QwizzesPage = {
   params: {
-    slug: string[]
+    category: string
   }
 }
 
-export type QwizRoute = QwizPage
+export type QwizPage = {
+  params: {
+    category: string
+    slug: string
+  }
+}
 
 export interface QwizzesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -25,6 +40,7 @@ export type QwizData = {
 export type QwizItem = Qwiz
 
 export type QwizInfoCard = {
+  category: string
   slug: string
   title: string
   description: string
@@ -36,3 +52,5 @@ export type QwizInfoCard = {
 export type Qwizzes = {
   qwizzes: QwizInfoCard[]
 }
+
+export type QwizzesCategory = Qwizzes
