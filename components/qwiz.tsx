@@ -35,7 +35,7 @@ export function Qwiz({ qwizData }: QwizData) {
   function handleExit(e: QwizButtonProps) {
     e.preventDefault()
     console.log('Function handleExit called.')
-    router.push('/qwizzes')
+    router.push('/qwizzes/apis')
   }
 
   function handleAnswer(selectedAnswer: string) {
