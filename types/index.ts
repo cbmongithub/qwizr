@@ -25,6 +25,9 @@ export type QwizPage = {
   }
 }
 
+export interface QwizButtonProps
+  extends React.MouseEvent<HTMLButtonElement, MouseEvent> {}
+
 export interface QwizzesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export type Qwiz = {

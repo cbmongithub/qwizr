@@ -57,7 +57,7 @@ export default async function QwizPage({
 
   return (
     <section className='container relative'>
-      <div className='my-[11rem] flex flex-col items-center justify-center mx-auto max-w-[650px]'>
+      <div className='my-[11rem] flex flex-col items-center justify-center mx-auto max-w-[600px]'>
         <Qwiz qwizData={qwizData} />
       </div>
     </section>

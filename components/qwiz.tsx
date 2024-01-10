@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { type Qwiz, type QwizData } from '@/types'
+import { useRouter } from 'next/navigation'
+import { type Qwiz, type QwizButtonProps, type QwizData } from '@/types'
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
@@ -11,8 +12,9 @@ import { Label } from './ui/label'
 import { Progress } from './ui/progress'
 
 export function Qwiz({ qwizData }: QwizData) {
-  const [questionNumber, setQuestionNumber] = useState<number>(0)
-  const [score, setScore] = useState<number>(0)
+  const router = useRouter()
+  const [questionNumber, setQuestionNumber] = useState(0)
+  const [score, setScore] = useState(0)
 
   if (!qwizData) {
     return (
@@ -22,24 +24,23 @@ export function Qwiz({ qwizData }: QwizData) {
     )
   }
 
-  function handleNext() {
+  function handleNext(e: QwizButtonProps) {
+    e.preventDefault()
+    console.log('Function handleNext called.')
     if (qwizData && questionNumber < qwizData.length - 1) {
       setQuestionNumber(prevNumber => prevNumber + 1)
     }
   }
 
-  function handleBack() {
-    if (questionNumber > 0) {
-      setQuestionNumber(prevNumber => prevNumber - 1)
-    }
+  function handleExit(e: QwizButtonProps) {
+    e.preventDefault()
+    console.log('Function handleExit called.')
+    router.push('/qwizzes')
   }
 
   function handleAnswer(selectedAnswer: string) {
-    if (!qwizData) {
-      return
-    }
-
-    const currentQuestion = qwizData[questionNumber]
+    console.log('Function handleAnswer called.')
+    const currentQuestion = qwizData && qwizData[questionNumber]
 
     if (
       currentQuestion &&
@@ -48,14 +49,8 @@ export function Qwiz({ qwizData }: QwizData) {
       )
     ) {
       setScore(prevScore => prevScore + 1)
-      console.log(score)
+      console.log('Score count: ', score)
     }
-
-    handleNext()
-  }
-
-  function selectAnswer(selectedAnswer: string) {
-    handleAnswer(selectedAnswer)
   }
 
   const progressValue = (questionNumber * 100) / (qwizData.length - 1)
@@ -64,13 +59,21 @@ export function Qwiz({ qwizData }: QwizData) {
 
   if (progressValue === 100) {
     return (
-      <div className='py-8 md:py-12 lg:py-24'>
-        <h1 className='text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl mb-8'>
+      <div className='py-8 md:py-12 lg:py-24 text-center'>
+        <h1 className='text-3xl font-bold leading-tight tracking-tighter md:text-5xl mb-3'>
           Quiz Completed!
         </h1>
-        <p className='text-center text-xl font-semibold'>
-          Your Score: {score} out of {qwizData.length}
+        <p className='text-lg font-normal text-muted-foreground'>
+          You scored {score} out of {qwizData.length}!
         </p>
+        <div className='mt-6'>
+          <Button
+            variant='default'
+            onClick={e => handleExit(e)}>
+            <span className='sr-only'>Exit</span>
+            &larr; Exit
+          </Button>
+        </div>
       </div>
     )
   }
@@ -83,7 +86,7 @@ export function Qwiz({ qwizData }: QwizData) {
       <h1 className='text-center text-2xl sm:text-3xl font-bold leading-tight tracking-tighter md:text-4xl mb-8'>
         {currentQuestion?.question}
       </h1>
-      <form className='w-full sm:w-[500px]'>
+      <div className='w-full'>
         <Progress value={progressValue} />
         <RadioGroup
           className='my-6'
@@ -95,7 +98,7 @@ export function Qwiz({ qwizData }: QwizData) {
               <RadioGroupItem
                 value={answer.answer}
                 id={`${index + 1}`}
-                onChange={() => selectAnswer(answer.answer)}
+                onClick={() => handleAnswer(answer.answer)}
               />
               <Label
                 className='text-sm md:text-md'
@@ -108,18 +111,18 @@ export function Qwiz({ qwizData }: QwizData) {
         <div className='flex w-full items-center justify-between'>
           <Button
             variant='outline'
-            onClick={handleBack}>
-            <span className='sr-only'>Back</span>
-            &larr; Back
+            onClick={e => handleExit(e)}>
+            <span className='sr-only'>Exit</span>
+            &larr; Exit
           </Button>
           <Button
             variant='default'
-            onClick={handleNext}>
+            onClick={e => handleNext(e)}>
             <span className='sr-only'>Next</span>
             Next &rarr;
           </Button>
         </div>
-      </form>
+      </div>
     </>
   )
 }

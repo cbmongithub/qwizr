@@ -44,7 +44,5 @@ export default async function QwizzesPage({
 
   const { qwizzes } = (await res.json()) as QwizzesCategory
 
-  qwizzes.map(qwiz => console.log(qwiz.category, category))
-
   return <Qwizzes qwizzes={qwizzes} />
 }

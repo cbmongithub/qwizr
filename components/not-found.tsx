@@ -6,7 +6,7 @@ import { buttonVariants } from './ui/button'
 
 export function NotFound({ resource }: { resource: string }) {
   return (
-    <div className='container max-w-[550px]'>
+    <div className='container max-w-[600px]'>
       <div className='flex flex-col justify-center items-center text-center'>
         <Icons.not_found className='mb-[-170px]' />
         <p className='text-lg pt-6 font-normal text-muted-foreground'>
