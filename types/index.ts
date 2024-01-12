@@ -25,6 +25,10 @@ export type QwizPage = {
   }
 }
 
+export type QwizTimer = {
+  questionNumber: number
+}
+
 export interface QwizButtonProps
   extends React.MouseEvent<HTMLButtonElement, MouseEvent> {}
 
@@ -47,7 +51,7 @@ export type QwizInfoCard = {
   slug: string
   title: string
   description: string
-  duration: number
+  progress: number
   concepts: string
 }
 ;[]

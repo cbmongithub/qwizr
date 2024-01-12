@@ -59,12 +59,12 @@
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
-}
-body::-webkit-scrollbar {
-  @apply w-[0.35em];
-}
-body::-webkit-scrollbar-thumb {
-  @apply rounded-md bg-primary;
+  body::-webkit-scrollbar {
+    @apply w-[0.35em];
+  }
+  body::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-primary;
+  }
 }
 
 @layer utilities {

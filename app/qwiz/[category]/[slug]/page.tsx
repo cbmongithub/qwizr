@@ -45,6 +45,17 @@ export default async function QwizPage({
     { method: 'GET' }
   )
 
+  //const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/chat-gpt`, {
+  //  method: 'POST',
+  //  headers: {
+  //    'Content-Type': 'application/json',
+  //  },
+  //  body: JSON.stringify({
+  //    category: category,
+  //    slug: slug,
+  //  }),
+  //})
+
   if (!res.ok) {
     return (
       <div className='flex flex-col items-center justify-center'>
@@ -53,7 +64,8 @@ export default async function QwizPage({
     )
   }
 
-  const { qwizData } = (await res.json()) as QwizData
+  const { qwizData } = await res.json()
+  //console.log('qwizData that came back from api/chat-gpt: ', qwizData)
 
   return (
     <section className='container relative'>

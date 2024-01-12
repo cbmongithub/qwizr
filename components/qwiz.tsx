@@ -7,6 +7,7 @@ import { type Qwiz, type QwizButtonProps, type QwizData } from '@/types'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 import { NotFound } from './not-found'
+import { QwizTimer } from './qwiz-timer'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Progress } from './ui/progress'
@@ -38,6 +39,12 @@ export function Qwiz({ qwizData }: QwizData) {
     router.push('/qwizzes/apis')
   }
 
+  function handleNewQwiz(e: QwizButtonProps) {
+    e.preventDefault()
+    console.log('Function handleNewQwiz called.')
+    router.push('/qwiz/frameworks/angular-js')
+  }
+
   function handleAnswer(selectedAnswer: string) {
     console.log('Function handleAnswer called.')
     const currentQuestion = qwizData && qwizData[questionNumber]
@@ -66,12 +73,18 @@ export function Qwiz({ qwizData }: QwizData) {
         <p className='text-lg font-normal text-muted-foreground'>
           You scored {score} out of {qwizData.length}!
         </p>
-        <div className='mt-6'>
+        <div className='mt-6 flex w-full items-center justify-between'>
           <Button
-            variant='default'
+            variant='outline'
             onClick={e => handleExit(e)}>
             <span className='sr-only'>Exit</span>
             &larr; Exit
+          </Button>
+          <Button
+            variant='default'
+            onClick={e => handleNewQwiz(e)}>
+            <span className='sr-only'>New Qwiz</span>
+            New Qwiz &rarr;
           </Button>
         </div>
       </div>
@@ -80,10 +93,13 @@ export function Qwiz({ qwizData }: QwizData) {
 
   return (
     <>
-      <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
-        {`Question ${questionNumber + 1} of ${qwizData.length}`}
-      </p>
-      <h1 className='text-center text-2xl sm:text-3xl font-bold leading-tight tracking-tighter md:text-4xl mb-8'>
+      <div className='flex w-full justify-between items-center'>
+        <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
+          {`Question ${questionNumber + 1} of ${qwizData.length}`}
+        </p>
+        <QwizTimer questionNumber={questionNumber + 1} />
+      </div>
+      <h1 className='text-left text-2xl sm:text-3xl font-bold leading-tight tracking-tighter md:text-4xl mb-6'>
         {currentQuestion?.question}
       </h1>
       <div className='w-full'>

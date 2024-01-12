@@ -16,7 +16,7 @@ export function Qwizzes({ qwizzes }: Qwizzes) {
               category={qwiz.category}
               slug={qwiz.slug}
               title={qwiz.title}
-              duration={qwiz.duration}
+              progress={qwiz.progress}
               description={qwiz.description}
               concepts={qwiz.concepts}
             />
