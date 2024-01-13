@@ -3,35 +3,14 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTimer } from '@/hooks'
-import {
-  type QwizButtonProps,
-  type QwizDataProps,
-  type QwizProps,
-} from '@/types'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
+import { type QwizButtonProps, type QwizDataProps } from '@/types'
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 import { QwizRecap } from './qwiz-recap'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Progress } from './ui/progress'
-
-const FormSchema = z.object({
-  type: z.enum(['1', '2', '3', '4'], {
-    required_error: 'Please select an answer.',
-  }),
-})
 
 export function Qwiz({ qwizData }: QwizDataProps) {
   const [questionNumber, setQuestionNumber] = useState(0)
@@ -40,15 +19,8 @@ export function Qwiz({ qwizData }: QwizDataProps) {
   const currentQuestion = qwizData![questionNumber]
   const router = useRouter()
   const [score, setScore] = useState(0)
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data)
-  }
-
-  function handleNext(e: QwizButtonProps) {
+  function handleNext(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     console.log('Function handleNext called.')
     if (questionNumber < qwizData!.length) {
@@ -70,8 +42,8 @@ export function Qwiz({ qwizData }: QwizDataProps) {
 
   function handleTryAgain(e: QwizButtonProps) {
     e.preventDefault()
-    console.log('Function handleNewQwiz called.')
-    router.push('/qwiz/frameworks/angular-js')
+    console.log('Function handleTryAgain called.')
+    window.location.reload()
   }
 
   function handleAnswer(selectedAnswer: string) {
@@ -85,13 +57,25 @@ export function Qwiz({ qwizData }: QwizDataProps) {
       setScore(prevScore => prevScore + 1)
     }
   }
-
-  if (progressValue === 100 || seconds === 0) {
+  if (progressValue === 100) {
     return (
       <QwizRecap
         score={score}
         length={qwizData!.length}
-        isComplete={seconds > 0 ? true : false}
+        isComplete={true}
+        handleExit={handleExit}
+        handleNextQwiz={handleNextQwiz}
+        handleTryAgain={handleTryAgain}
+      />
+    )
+  }
+
+  if (seconds <= 0) {
+    return (
+      <QwizRecap
+        score={score}
+        length={qwizData!.length}
+        isComplete={false}
         handleExit={handleExit}
         handleNextQwiz={handleNextQwiz}
         handleTryAgain={handleTryAgain}
@@ -114,7 +98,7 @@ export function Qwiz({ qwizData }: QwizDataProps) {
       </h1>
       <div className='w-full'>
         <Progress value={progressValue} />
-        <form>
+        <form onSubmit={e => handleNext(e)}>
           <RadioGroup
             required={true}
             className='my-6'
@@ -127,6 +111,7 @@ export function Qwiz({ qwizData }: QwizDataProps) {
                   value={answer.answer}
                   id={`${index + 1}`}
                   onClick={() => handleAnswer(answer.answer)}
+                  required={true}
                 />
                 <Label
                   className='text-sm md:text-md'
@@ -145,8 +130,7 @@ export function Qwiz({ qwizData }: QwizDataProps) {
             </Button>
             <Button
               type='submit'
-              variant='default'
-              onClick={e => handleNext(e)}>
+              variant='default'>
               <span className='sr-only'>Next</span>
               Next &rarr;
             </Button>
