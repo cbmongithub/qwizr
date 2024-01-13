@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTimer } from '@/hooks'
 import {
   type QwizButtonProps,
   type QwizDataProps,
@@ -21,7 +22,7 @@ import {
 } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
-import { QwizTimer } from './qwiz-timer'
+import { QwizRecap } from './qwiz-recap'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Progress } from './ui/progress'
@@ -33,10 +34,11 @@ const FormSchema = z.object({
 })
 
 export function Qwiz({ qwizData }: QwizDataProps) {
-  const router = useRouter()
   const [questionNumber, setQuestionNumber] = useState(0)
+  const { seconds } = useTimer(questionNumber)
   const progressValue = (questionNumber * 100) / qwizData!.length
   const currentQuestion = qwizData![questionNumber]
+  const router = useRouter()
   const [score, setScore] = useState(0)
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -80,37 +82,12 @@ export function Qwiz({ qwizData }: QwizDataProps) {
 
   if (progressValue === 100) {
     return (
-      <div className='flex flex-col justify-center fixed inset-0 z-50 transition-all duration-500 items-center backdrop-blur supports-[backdrop-filter]:bg-background/10'>
-        <div className='py-8 md:py-12 lg:py-24 text-center'>
-          <h1 className='text-3xl font-bold leading-tight tracking-tighter md:text-5xl mb-3'>
-            {score === qwizData!.length ? 'Perfect score!' : 'Quiz Completed!'}
-          </h1>
-          <p className='text-lg font-normal text-muted-foreground'>
-            You scored {score} out of {qwizData!.length} points!
-          </p>
-          <Button
-            className='my-6'
-            variant='ghost'
-            onClick={() => router.refresh}>
-            <span className='sr-only'>Try Again</span>
-            Try Again
-          </Button>
-          <div className='mt-6 flex w-full items-center justify-between'>
-            <Button
-              variant='outline'
-              onClick={e => handleExit(e)}>
-              <span className='sr-only'>Exit</span>
-              &larr; Exit
-            </Button>
-            <Button
-              variant='default'
-              onClick={e => handleNewQwiz(e)}>
-              <span className='sr-only'>New Qwiz</span>
-              New Qwiz &rarr;
-            </Button>
-          </div>
-        </div>
-      </div>
+      <QwizRecap
+        score={score}
+        length={qwizData!.length}
+        handleExit={handleExit}
+        handleNewQwiz={handleNewQwiz}
+      />
     )
   }
 
@@ -120,7 +97,9 @@ export function Qwiz({ qwizData }: QwizDataProps) {
         <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
           {`Question ${questionNumber + 1} of ${qwizData!.length}`}
         </p>
-        <QwizTimer questionNumber={questionNumber + 1} />
+        <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
+          {seconds}
+        </p>
       </div>
       <h1 className='text-left text-2xl sm:text-3xl font-bold leading-tight tracking-tighter md:text-4xl mb-6'>
         {currentQuestion?.question}

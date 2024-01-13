@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
-import { type QwizTimerProps } from '@/types'
 
-export function QwizTimer({ questionNumber }: QwizTimerProps) {
+export default function useQwizTimer(questionNumber: number) {
   const [seconds, setSeconds] = useState(0)
-  const [degrees, setDegrees] = useState(0)
 
   useEffect(() => {
     setSeconds(prevSeconds => prevSeconds + 5)
@@ -15,9 +13,5 @@ export function QwizTimer({ questionNumber }: QwizTimerProps) {
     return () => clearInterval(interval)
   }, [questionNumber])
 
-  return (
-    <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
-      {seconds}s
-    </p>
-  )
+  return { seconds: seconds }
 }

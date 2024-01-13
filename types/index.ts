@@ -25,10 +25,6 @@ export interface QwizPageProps {
   }
 }
 
-export interface QwizTimerProps {
-  questionNumber: number
-}
-
 export interface QwizRecapProps {
   score: number
   length: number
