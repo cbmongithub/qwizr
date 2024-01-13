@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react'
-import { type QwizTimer } from '@/types'
+import { type QwizTimerProps } from '@/types'
 
-export function QwizTimer({ questionNumber }: QwizTimer) {
+export function QwizTimer({ questionNumber }: QwizTimerProps) {
   const [seconds, setSeconds] = useState(0)
   const [degrees, setDegrees] = useState(0)
-  //const [pie, setPie] = useState({
-  //  backgroundImage:
-  //    'linear-gradient(90deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)',
-  //})
 
   useEffect(() => {
     setSeconds(prevSeconds => prevSeconds + 5)

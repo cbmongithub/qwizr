@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import { siteConfig } from '@/config'
 import { cn, fontSans } from '@/lib'
-import { type Layout } from '@/types'
+import { type LayoutProps } from '@/types'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({ children }: Layout) {
+export default function RootLayout({ children }: LayoutProps) {
   return (
     <>
       <html

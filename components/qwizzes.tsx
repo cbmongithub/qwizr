@@ -1,10 +1,10 @@
-import { type Qwizzes } from '@/types'
+import { type QwizzesProps } from '@/types'
 
 import { Icons } from './icons'
 import { QwizInfoCard } from './qwiz-info-card'
 import { QwizzesNav } from './qwizzes-nav'
 
-export function Qwizzes({ qwizzes }: Qwizzes) {
+export function Qwizzes({ qwizzes }: QwizzesProps) {
   return (
     <div className='mx-auto mt-6 mb-12'>
       <QwizzesNav />

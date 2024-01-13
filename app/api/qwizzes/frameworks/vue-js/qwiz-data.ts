@@ -1,4 +1,4 @@
-import { QwizItem } from '@/types'
+import { QwizItemProps } from '@/types'
 
 const qwizData = [
   {
@@ -38,6 +38,6 @@ const qwizData = [
       { answer: 'removed' },
     ],
   },
-] satisfies QwizItem[]
+] satisfies QwizItemProps[]
 
 export default qwizData

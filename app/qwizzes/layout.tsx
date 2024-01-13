@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib'
-import { type Layout } from '@/types'
+import { type LayoutProps } from '@/types'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Announcement } from '@/components/announcement'
@@ -11,7 +11,7 @@ import {
   PageHeaderHeading,
 } from '@/components/page-header'
 
-export default function QwizzesLayout({ children }: Layout) {
+export default function QwizzesLayout({ children }: LayoutProps) {
   return (
     <>
       <PageHeader>

@@ -1,4 +1,4 @@
-import { QwizItem } from '@/types'
+import { QwizItemProps } from '@/types'
 
 const qwizData = [
   {
@@ -37,6 +37,6 @@ const qwizData = [
       { answer: 'To handle HTTP requests' },
     ],
   },
-] satisfies QwizItem[]
+] satisfies QwizItemProps[]
 
 export default qwizData

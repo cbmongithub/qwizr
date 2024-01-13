@@ -1,4 +1,4 @@
-import { QwizInfoCard } from '@/types'
+import { QwizInfoCardProps } from '@/types'
 
 export const qwizzes = [
   {
@@ -51,6 +51,6 @@ export const qwizzes = [
     concepts:
       'Variables, Data Types, Control Structures, Functions, Web Frameworks (e.g., Django, Flask), Database Access, RESTful APIs, and more.',
   },
-] satisfies QwizInfoCard[]
+] satisfies QwizInfoCardProps[]
 
 export default qwizzes

@@ -1,9 +1,9 @@
 import { formatSlug } from '@/helpers'
-import { type QwizzesCategory, type QwizzesPage } from '@/types'
+import { type QwizzesCategoryProps, type QwizzesPageProps } from '@/types'
 
 import { Qwizzes } from '@/components/qwizzes'
 
-export async function generateMetadata({ params }: QwizzesPage) {
+export async function generateMetadata({ params }: QwizzesPageProps) {
   return {
     title: `${formatSlug(params.category)}`,
     description: `Browse through our ${formatSlug(
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: QwizzesPage) {
 
 export default async function QwizzesPage({
   params: { category },
-}: QwizzesPage) {
+}: QwizzesPageProps) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/qwizzes/${category}`,
     {
@@ -42,7 +42,7 @@ export default async function QwizzesPage({
     return <Qwizzes qwizzes={[]} />
   }
 
-  const { qwizzes } = (await res.json()) as QwizzesCategory
+  const { qwizzes } = (await res.json()) as QwizzesCategoryProps
 
   return <Qwizzes qwizzes={qwizzes} />
 }

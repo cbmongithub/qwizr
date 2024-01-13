@@ -1,4 +1,4 @@
-import { QwizItem } from '@/types'
+import { QwizItemProps } from '@/types'
 
 const qwizData = [
   {
@@ -39,6 +39,6 @@ const qwizData = [
       { answer: "import React from 'react' has always been optional" },
     ],
   },
-] satisfies QwizItem[]
+] satisfies QwizItemProps[]
 
 export default qwizData

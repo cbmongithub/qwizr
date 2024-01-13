@@ -2,33 +2,54 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { type Qwiz, type QwizButtonProps, type QwizData } from '@/types'
+import {
+  type QwizButtonProps,
+  type QwizDataProps,
+  type QwizProps,
+} from '@/types'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
-import { NotFound } from './not-found'
 import { QwizTimer } from './qwiz-timer'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Progress } from './ui/progress'
 
-export function Qwiz({ qwizData }: QwizData) {
+const FormSchema = z.object({
+  type: z.enum(['1', '2', '3', '4'], {
+    required_error: 'Please select an answer.',
+  }),
+})
+
+export function Qwiz({ qwizData }: QwizDataProps) {
   const router = useRouter()
   const [questionNumber, setQuestionNumber] = useState(0)
+  const progressValue = (questionNumber * 100) / qwizData!.length
+  const currentQuestion = qwizData![questionNumber]
   const [score, setScore] = useState(0)
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  })
 
-  if (!qwizData) {
-    return (
-      <div className='mt-52 flex flex-col items-center justify-center'>
-        <NotFound resource='Qwiz' />
-      </div>
-    )
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data)
   }
 
   function handleNext(e: QwizButtonProps) {
     e.preventDefault()
     console.log('Function handleNext called.')
-    if (qwizData && questionNumber < qwizData.length - 1) {
+    if (questionNumber < qwizData!.length) {
       setQuestionNumber(prevNumber => prevNumber + 1)
     }
   }
@@ -47,45 +68,47 @@ export function Qwiz({ qwizData }: QwizData) {
 
   function handleAnswer(selectedAnswer: string) {
     console.log('Function handleAnswer called.')
-    const currentQuestion = qwizData && qwizData[questionNumber]
 
     if (
-      currentQuestion &&
-      currentQuestion.answers.some(
+      currentQuestion?.answers?.some(
         answer => answer.answer === selectedAnswer && answer.isCorrect
       )
     ) {
       setScore(prevScore => prevScore + 1)
-      console.log('Score count: ', score)
     }
   }
 
-  const progressValue = (questionNumber * 100) / (qwizData.length - 1)
-
-  const currentQuestion = qwizData[questionNumber]
-
   if (progressValue === 100) {
     return (
-      <div className='py-8 md:py-12 lg:py-24 text-center'>
-        <h1 className='text-3xl font-bold leading-tight tracking-tighter md:text-5xl mb-3'>
-          Quiz Completed!
-        </h1>
-        <p className='text-lg font-normal text-muted-foreground'>
-          You scored {score} out of {qwizData.length}!
-        </p>
-        <div className='mt-6 flex w-full items-center justify-between'>
+      <div className='flex flex-col justify-center fixed inset-0 z-50 transition-all duration-500 items-center backdrop-blur supports-[backdrop-filter]:bg-background/10'>
+        <div className='py-8 md:py-12 lg:py-24 text-center'>
+          <h1 className='text-3xl font-bold leading-tight tracking-tighter md:text-5xl mb-3'>
+            {score === qwizData!.length ? 'Perfect score!' : 'Quiz Completed!'}
+          </h1>
+          <p className='text-lg font-normal text-muted-foreground'>
+            You scored {score} out of {qwizData!.length} points!
+          </p>
           <Button
-            variant='outline'
-            onClick={e => handleExit(e)}>
-            <span className='sr-only'>Exit</span>
-            &larr; Exit
+            className='my-6'
+            variant='ghost'
+            onClick={() => router.refresh}>
+            <span className='sr-only'>Try Again</span>
+            Try Again
           </Button>
-          <Button
-            variant='default'
-            onClick={e => handleNewQwiz(e)}>
-            <span className='sr-only'>New Qwiz</span>
-            New Qwiz &rarr;
-          </Button>
+          <div className='mt-6 flex w-full items-center justify-between'>
+            <Button
+              variant='outline'
+              onClick={e => handleExit(e)}>
+              <span className='sr-only'>Exit</span>
+              &larr; Exit
+            </Button>
+            <Button
+              variant='default'
+              onClick={e => handleNewQwiz(e)}>
+              <span className='sr-only'>New Qwiz</span>
+              New Qwiz &rarr;
+            </Button>
+          </div>
         </div>
       </div>
     )
@@ -95,7 +118,7 @@ export function Qwiz({ qwizData }: QwizData) {
     <>
       <div className='flex w-full justify-between items-center'>
         <p className='pb-3 text-center text-md text-muted-foreground md:text-lg'>
-          {`Question ${questionNumber + 1} of ${qwizData.length}`}
+          {`Question ${questionNumber + 1} of ${qwizData!.length}`}
         </p>
         <QwizTimer questionNumber={questionNumber + 1} />
       </div>
@@ -104,40 +127,44 @@ export function Qwiz({ qwizData }: QwizData) {
       </h1>
       <div className='w-full'>
         <Progress value={progressValue} />
-        <RadioGroup
-          className='my-6'
-          name='qwiz'>
-          {currentQuestion?.answers.map((answer, index) => (
-            <div
-              key={index}
-              className='flex items-center space-x-2 text-card-foreground py-2'>
-              <RadioGroupItem
-                value={answer.answer}
-                id={`${index + 1}`}
-                onClick={() => handleAnswer(answer.answer)}
-              />
-              <Label
-                className='text-sm md:text-md'
-                htmlFor={`${index + 1}`}>
-                {answer.answer}
-              </Label>
-            </div>
-          ))}
-        </RadioGroup>
-        <div className='flex w-full items-center justify-between'>
-          <Button
-            variant='outline'
-            onClick={e => handleExit(e)}>
-            <span className='sr-only'>Exit</span>
-            &larr; Exit
-          </Button>
-          <Button
-            variant='default'
-            onClick={e => handleNext(e)}>
-            <span className='sr-only'>Next</span>
-            Next &rarr;
-          </Button>
-        </div>
+        <form>
+          <RadioGroup
+            required={true}
+            className='my-6'
+            name='qwiz'>
+            {currentQuestion?.answers?.map((answer, index) => (
+              <div
+                key={index}
+                className='flex items-center space-x-2 text-card-foreground py-2'>
+                <RadioGroupItem
+                  value={answer.answer}
+                  id={`${index + 1}`}
+                  onClick={() => handleAnswer(answer.answer)}
+                />
+                <Label
+                  className='text-sm md:text-md'
+                  htmlFor={`${index + 1}`}>
+                  {answer.answer}
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
+          <div className='flex w-full items-center justify-between'>
+            <Button
+              variant='outline'
+              onClick={e => handleExit(e)}>
+              <span className='sr-only'>Exit</span>
+              &larr; Exit
+            </Button>
+            <Button
+              type='submit'
+              variant='default'
+              onClick={e => handleNext(e)}>
+              <span className='sr-only'>Next</span>
+              Next &rarr;
+            </Button>
+          </div>
+        </form>
       </div>
     </>
   )

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { cn } from '@/lib'
-import { type QwizInfoCard } from '@/types'
+import { type QwizInfoCardProps } from '@/types'
 import { Clock5Icon } from 'lucide-react'
 
 import {
@@ -24,7 +24,7 @@ export function QwizInfoCard({
   progress,
   description,
   concepts,
-}: QwizInfoCard) {
+}: QwizInfoCardProps) {
   return (
     <Card>
       <CardHeader>

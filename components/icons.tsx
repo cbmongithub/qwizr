@@ -1,7 +1,7 @@
-import { type Icon } from '@/types'
+import { type IconProps } from '@/types'
 
 export const Icons = {
-  logo: (props: Icon) => (
+  logo: (props: IconProps) => (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
@@ -26,7 +26,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  menu: (props: Icon) => (
+  menu: (props: IconProps) => (
     <svg
       strokeWidth='1.5'
       viewBox='0 0 24 24'
@@ -53,7 +53,7 @@ export const Icons = {
         strokeLinejoin='round'></path>
     </svg>
   ),
-  not_found: (props: Icon) => (
+  not_found: (props: IconProps) => (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       width='150'
@@ -251,12 +251,13 @@ export const Icons = {
       />
     </svg>
   ),
-  no_content: (props: Icon) => (
+  no_content: (props: IconProps) => (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       width='150'
       height='125'
-      viewBox='0 0 647.63626 632.17383'>
+      viewBox='0 0 647.63626 632.17383'
+      {...props}>
       <path
         d='M687.3279,276.08691H512.81813a15.01828,15.01828,0,0,0-15,15v387.85l-2,.61005-42.81006,13.11a8.00676,8.00676,0,0,1-9.98974-5.31L315.678,271.39691a8.00313,8.00313,0,0,1,5.31006-9.99l65.97022-20.2,191.25-58.54,65.96972-20.2a7.98927,7.98927,0,0,1,9.99024,5.3l32.5498,106.32Z'
         transform='translate(-276.18187 -133.91309)'

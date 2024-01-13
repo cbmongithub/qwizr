@@ -1,15 +1,15 @@
 import { formatSlug } from '@/helpers'
 import {
-  type QwizData,
-  type QwizPage,
-  type QwizzesCategory,
-  type QwizzesPage,
+  type QwizDataProps,
+  type QwizPageProps,
+  type QwizzesCategoryProps,
+  type QwizzesPageProps,
 } from '@/types'
 
 import { NotFound } from '@/components/not-found'
 import { Qwiz } from '@/components/qwiz'
 
-export async function generateMetadata({ params }: QwizPage) {
+export async function generateMetadata({ params }: QwizPageProps) {
   return {
     title: `${formatSlug(params.slug)} Qwiz`,
     description: `How much do you really know about ${formatSlug(
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: QwizPage) {
 
 export default async function QwizPage({
   params: { category, slug },
-}: QwizPage) {
+}: QwizPageProps) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/qwizzes/${category}/${slug}`,
     { method: 'GET' }
@@ -64,7 +64,7 @@ export default async function QwizPage({
     )
   }
 
-  const { qwizData } = await res.json()
+  const { qwizData } = (await res.json()) as QwizDataProps
   //console.log('qwizData that came back from api/chat-gpt: ', qwizData)
 
   return (

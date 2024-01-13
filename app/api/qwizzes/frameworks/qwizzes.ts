@@ -1,4 +1,4 @@
-import { QwizInfoCard } from '@/types'
+import { QwizInfoCardProps } from '@/types'
 
 export const qwizzes = [
   {
@@ -51,6 +51,6 @@ export const qwizzes = [
     concepts:
       'Routing, Middleware, Request and Response, RESTful APIs, Template Engines, Error Handling, Security, File Uploads, and more.',
   },
-] satisfies QwizInfoCard[]
+] satisfies QwizInfoCardProps[]
 
 export default qwizzes

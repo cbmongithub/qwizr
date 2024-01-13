@@ -1,8 +1,8 @@
 import { LinkProps } from 'next/link'
 
-export type Icon = React.HTMLAttributes<SVGElement>
+export interface IconProps extends React.HTMLAttributes<SVGElement> {}
 
-export type Layout = {
+export interface LayoutProps {
   children: React.ReactNode
 }
 
@@ -12,21 +12,28 @@ export interface MobileLinkProps extends LinkProps {
   className?: string
 }
 
-export type QwizzesPage = {
+export interface QwizzesPageProps {
   params: {
     category: string
   }
 }
 
-export type QwizPage = {
+export interface QwizPageProps {
   params: {
     category: string
     slug: string
   }
 }
 
-export type QwizTimer = {
+export interface QwizTimerProps {
   questionNumber: number
+}
+
+export interface QwizRecapProps {
+  score: number
+  length: number
+  handleExit: (e: QwizButtonProps) => void
+  handleNewQwiz: (e: QwizButtonProps) => void
 }
 
 export interface QwizButtonProps
@@ -34,19 +41,19 @@ export interface QwizButtonProps
 
 export interface QwizzesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export type Qwiz = {
+export interface QwizProps {
   question: string
   answers: { answer: string; isCorrect?: boolean }[]
 }
 ;[]
 
-export type QwizData = {
-  qwizData?: Qwiz[]
+export interface QwizDataProps {
+  qwizData?: QwizProps[]
 }
 
-export type QwizItem = Qwiz
+export interface QwizItemProps extends QwizProps {}
 
-export type QwizInfoCard = {
+export interface QwizInfoCardProps {
   category: string
   slug: string
   title: string
@@ -56,8 +63,8 @@ export type QwizInfoCard = {
 }
 ;[]
 
-export type Qwizzes = {
-  qwizzes: QwizInfoCard[]
+export interface QwizzesProps {
+  qwizzes: QwizInfoCardProps[]
 }
 
-export type QwizzesCategory = Qwizzes
+export interface QwizzesCategoryProps extends QwizzesProps {}
