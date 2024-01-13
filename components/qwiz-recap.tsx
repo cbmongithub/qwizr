@@ -36,7 +36,9 @@ export function QwizRecap({
             : `${
                 !score
                   ? 'You scored no points. Try again!'
-                  : `Your ${score} points were voided. Try again!`
+                  : `Your ${
+                      score > 0 ? 'points were' : 'point was'
+                    } voided. Try again!`
               }`}
         </p>
         <div className='mt-6 flex w-full items-center justify-between'>
