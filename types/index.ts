@@ -28,8 +28,10 @@ export interface QwizPageProps {
 export interface QwizRecapProps {
   score: number
   length: number
+  isComplete: boolean
   handleExit: (e: QwizButtonProps) => void
-  handleNewQwiz: (e: QwizButtonProps) => void
+  handleNextQwiz: (e: QwizButtonProps) => void
+  handleTryAgain: (e: QwizButtonProps) => void
 }
 
 export interface QwizButtonProps

@@ -59,10 +59,16 @@ export function Qwiz({ qwizData }: QwizDataProps) {
   function handleExit(e: QwizButtonProps) {
     e.preventDefault()
     console.log('Function handleExit called.')
-    router.push('/qwizzes/apis')
+    router.back()
   }
 
-  function handleNewQwiz(e: QwizButtonProps) {
+  function handleNextQwiz(e: QwizButtonProps) {
+    e.preventDefault()
+    console.log('Function handleNewQwiz called.')
+    router.push('/qwiz/frameworks/angular-js')
+  }
+
+  function handleTryAgain(e: QwizButtonProps) {
     e.preventDefault()
     console.log('Function handleNewQwiz called.')
     router.push('/qwiz/frameworks/angular-js')
@@ -80,13 +86,15 @@ export function Qwiz({ qwizData }: QwizDataProps) {
     }
   }
 
-  if (progressValue === 100) {
+  if (progressValue === 100 || seconds === 0) {
     return (
       <QwizRecap
         score={score}
         length={qwizData!.length}
+        isComplete={seconds > 0 ? true : false}
         handleExit={handleExit}
-        handleNewQwiz={handleNewQwiz}
+        handleNextQwiz={handleNextQwiz}
+        handleTryAgain={handleTryAgain}
       />
     )
   }

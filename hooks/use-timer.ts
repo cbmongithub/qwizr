@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function useQwizTimer(questionNumber: number) {
+export default function useTimer(questionNumber: number) {
   const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
