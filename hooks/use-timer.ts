@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 
 export default function useTimer(questionNumber: number) {
-  const [seconds, setSeconds] = useState(10)
+  const [seconds, setSeconds] = useState(5)
 
   useEffect(() => {
     setSeconds(prevSeconds =>
-      prevSeconds === 10 ? prevSeconds : prevSeconds + 5
+      prevSeconds === 5 ? prevSeconds : prevSeconds + 5
     )
 
     const interval = setInterval(() => {
@@ -15,5 +15,5 @@ export default function useTimer(questionNumber: number) {
     return () => clearInterval(interval)
   }, [questionNumber])
 
-  return { seconds: seconds }
+  return { seconds }
 }

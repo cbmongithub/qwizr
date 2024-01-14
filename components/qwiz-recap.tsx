@@ -12,7 +12,7 @@ export function QwizRecap({
   handleTryAgain,
 }: QwizRecapProps) {
   return (
-    <div className='flex flex-col justify-center fixed inset-0 z-50 transition-all duration-500 items-center backdrop-blur supports-[backdrop-filter]:bg-background/10'>
+    <div className='flex flex-col justify-center fixed inset-0 z-50 transition-all duration-500 items-center backdrop-blur supports-[backdrop-filter]:bg-background/60'>
       {score === length && isComplete && (
         <Confetti
           width={window.innerWidth}
@@ -37,7 +37,7 @@ export function QwizRecap({
                 !score
                   ? 'You scored no points. Try again!'
                   : `Your ${
-                      score > 0 ? 'points were' : 'point was'
+                      score > 1 ? 'points were' : 'point was'
                     } voided. Try again!`
               }`}
         </p>
@@ -50,9 +50,13 @@ export function QwizRecap({
           </Button>
           <Button
             variant='default'
-            onClick={e => (isComplete ? handleNextQwiz(e) : handleTryAgain(e))}>
-            <span className='sr-only'>{isComplete ? 'Next' : 'Try again'}</span>
-            {isComplete ? 'Next' : 'Try again'}&rarr;
+            onClick={e =>
+              isComplete && score > 0 ? handleNextQwiz(e) : handleTryAgain(e)
+            }>
+            <span className='sr-only'>
+              {isComplete && score > 0 ? 'Next' : 'Try again'}
+            </span>
+            {isComplete && score > 0 ? 'Next' : 'Try again'}&rarr;
           </Button>
         </div>
       </div>
