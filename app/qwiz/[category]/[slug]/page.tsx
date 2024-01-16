@@ -9,12 +9,11 @@ import {
 import { NotFound } from '@/components/not-found'
 import { Qwiz } from '@/components/qwiz'
 
-export async function generateMetadata({ params }: QwizPageProps) {
+export async function generateMetadata({ params: { slug } }: QwizPageProps) {
+  const formattedSlug = formatSlug(slug)
   return {
-    title: `${formatSlug(params.slug)} Qwiz`,
-    description: `How much do you really know about ${formatSlug(
-      params.slug
-    )}? Take the qwiz today and find out!`,
+    title: `${formattedSlug} Qwiz`,
+    description: `How much do you really know about ${formattedSlug}? Take the qwiz today and find out!`,
   }
 }
 // Come back to this later, figure out why it is not generating
@@ -59,7 +58,7 @@ export default async function QwizPage({
   if (!res.ok) {
     return (
       <div className='flex flex-col items-center justify-center'>
-        <NotFound resource={`${formatSlug(category)} qwiz`} />
+        <NotFound resource={`${formatSlug(slug)} qwiz`} />
       </div>
     )
   }

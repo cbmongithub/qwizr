@@ -1,4 +1,5 @@
 import { LinkProps } from 'next/link'
+import { Types } from 'mongoose'
 
 export interface IconProps extends React.HTMLAttributes<SVGElement> {}
 
@@ -66,3 +67,50 @@ export interface QwizzesProps {
 }
 
 export interface QwizzesCategoryProps extends QwizzesProps {}
+
+export interface User {
+  first_name: {
+    type: StringConstructor
+    required: boolean
+    unique: boolean
+    trim: boolean
+  }
+  last_name: {
+    type: StringConstructor
+    required: boolean
+    unique: boolean
+    trim: boolean
+  }
+  username: {
+    type: StringConstructor
+    required: boolean
+    unique: boolean
+    trim: boolean
+  }
+  email: {
+    type: StringConstructor
+    required: boolean
+    unique: boolean
+    match: [RegExp]
+  }
+  password: {
+    type: StringConstructor
+    required: boolean
+    unique: boolean
+    min: (string | number)[]
+    max: number
+  }
+  country: {
+    type: StringConstructor
+    required: boolean
+  }
+  created_at: {
+    type: DateConstructor
+    default: () => number
+    get: (timestamp: number) => string
+  }
+  friends: {
+    type: typeof Types.ObjectId
+    ref: string
+  }[]
+}
