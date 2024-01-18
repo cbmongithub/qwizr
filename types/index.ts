@@ -114,3 +114,6 @@ export interface User {
     ref: string
   }[]
 }
+
+export interface UserAuthFormProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
