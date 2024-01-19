@@ -1,9 +1,10 @@
-import { db } from '@/lib'
-import User from '@/models/user'
 import { compare } from 'bcryptjs'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
+
+import db from '../../../../lib/db-connection'
+import User from '../../../../models/User'
 
 const handler = NextAuth({
   providers: [
@@ -19,9 +20,7 @@ const handler = NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
-        await db().catch(err => {
-          throw new Error(err)
-        })
+        db().then(() => console.log('Connected to MongoDB!'))
 
         const user = await User.findOne({
           email: req.body?.email,

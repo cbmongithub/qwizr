@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { siteConfig } from '@/config'
-import { cn, loginUser } from '@/lib'
+import { cn } from '@/lib'
 import { UserAuthFormProps } from '@/types'
 import { signIn } from 'next-auth/react'
 
@@ -23,47 +22,48 @@ import {
 } from './ui/select'
 
 export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
-  const [data, setData] = useState({
+  const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
     email: '',
     password: '',
     username: '',
-    country: 'United States of America',
+    country: '',
   })
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
+    console.log(formData)
     try {
       setIsLoading(true)
-      const response = await fetch('api/auth', {
+      const response = await fetch('api/auth/sign-up', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       })
+
+      !response.ok && setSubmitError(response.statusText)
 
       let result = await response.json()
 
-      console.log(result)
+      result && setIsLoading(false)
 
-      !response.ok && setSubmitError(response.statusText)
+      console.log(result)
     } catch (error) {
       console.log(error)
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }
 
   return (
     <div
       className={cn('grid gap-6', className)}
       {...props}>
-      <form
-        onSubmit={onSubmit}
-        onChange={() => submitError != '' && setSubmitError('')}>
+      <form onSubmit={onSubmit}>
         <div className='grid gap-2'>
           <div className='grid gap-1'>
             <Label
@@ -78,11 +78,11 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize='none'
               autoComplete='email'
               onChange={({ target }) =>
-                setData({ ...data, country: target.value })
+                setFormData({ ...formData, email: target.value })
               }
               name='email'
               autoCorrect='off'
-              value={data.email}
+              value={formData.email}
               disabled={isLoading}
             />
             <Label
@@ -97,11 +97,11 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize='none'
               autoComplete='none'
               onChange={({ target }) =>
-                setData({ ...data, password: target.value })
+                setFormData({ ...formData, password: target.value })
               }
               name='password'
               autoCorrect='off'
-              value={data.password}
+              value={formData.password}
               disabled={isLoading}
             />
             <Label
@@ -111,16 +111,16 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
             </Label>
             <Input
               id='username'
-              placeholder='Ladiesman217'
+              placeholder='Username'
               type='text'
               autoCapitalize='none'
               autoComplete='none'
               onChange={({ target }) =>
-                setData({ ...data, username: target.value })
+                setFormData({ ...formData, username: target.value })
               }
               name='username'
               autoCorrect='off'
-              value={data.username}
+              value={formData.username}
               disabled={isLoading}
             />
             <Label
@@ -135,11 +135,11 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize='none'
               autoComplete='first_name'
               onChange={({ target }) =>
-                setData({ ...data, first_name: target.value })
+                setFormData({ ...formData, first_name: target.value })
               }
               name='first_name'
               autoCorrect='off'
-              value={data.first_name}
+              value={formData.first_name}
               disabled={isLoading}
             />
             <Label
@@ -154,11 +154,11 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize='none'
               autoComplete='last_name'
               onChange={({ target }) =>
-                setData({ ...data, last_name: target.value })
+                setFormData({ ...formData, last_name: target.value })
               }
               name='last_name'
               autoCorrect='off'
-              value={data.last_name}
+              value={formData.last_name}
               disabled={isLoading}
             />
             <Label
@@ -167,7 +167,7 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
               Country
             </Label>
             <Select>
-              <SelectTrigger className='w-[180px]'>
+              <SelectTrigger className='w-full'>
                 <SelectValue placeholder='Select a Country' />
               </SelectTrigger>
               <SelectContent>
@@ -176,8 +176,11 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
                   {siteConfig.countries.map((option, index) => (
                     <SelectItem
                       key={`userAuthForm_country_${index}`}
-                      onChange={() => setData({ ...data, country: option })}
-                      value={data.country}>
+                      onChange={() =>
+                        setFormData({ ...formData, country: option })
+                      }
+                      defaultValue={'United States of America'}
+                      value={option}>
                       {option}
                     </SelectItem>
                   ))}

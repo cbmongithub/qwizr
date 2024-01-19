@@ -1,6 +1,5 @@
-import { db } from './db'
+import dbConnection from './db-connection'
 import { fontMono, fontSans } from './fonts'
-import { loginUser } from './login-user'
 import cn from './utils'
 
-export { fontSans, fontMono, cn, db, loginUser }
+export { fontSans, fontMono, cn, dbConnection }

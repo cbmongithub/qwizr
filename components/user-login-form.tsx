@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { siteConfig } from '@/config'
-import { cn, loginUser } from '@/lib'
+import { cn } from '@/lib'
 import { UserAuthFormProps } from '@/types'
 import { signIn } from 'next-auth/react'
 
@@ -12,47 +10,46 @@ import { Icons } from '@/components/icons'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select'
 
 export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
-  const router = useRouter()
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
-
+    console.log(formData)
     try {
       setIsLoading(true)
-      const loginRes = await loginUser(email, password)
-      if (loginRes && !loginRes.ok) {
-        setSubmitError('Invalid Email or Password')
-      } else {
-        router.push('/dashboard')
-      }
+      const response = await fetch('api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      !response.ok && setSubmitError(response.statusText)
+
+      let result = await response.json()
+
+      result && setIsLoading(false)
+
+      console.log(result)
     } catch (error) {
       console.log(error)
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }
 
   return (
     <div
       className={cn('grid gap-6', className)}
       {...props}>
-      <form
-        onSubmit={onSubmit}
-        onChange={() => submitError != '' && setSubmitError('')}>
+      <form onSubmit={onSubmit}>
         <div className='grid gap-2'>
           <div className='grid gap-1'>
             <Label
@@ -66,10 +63,12 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
               type='email'
               autoCapitalize='none'
               autoComplete='email'
-              onChange={({ target }) => setEmail(target.value)}
+              onChange={({ target }) =>
+                setFormData({ ...formData, email: target.value })
+              }
               name='email'
               autoCorrect='off'
-              value={email}
+              value={formData.email}
               disabled={isLoading}
             />
             <Label
@@ -83,10 +82,12 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
               type='password'
               autoCapitalize='none'
               autoComplete='none'
-              onChange={({ target }) => setPassword(target.value)}
+              onChange={({ target }) =>
+                setFormData({ ...formData, password: target.value })
+              }
               name='password'
               autoCorrect='off'
-              value={password}
+              value={formData.password}
               disabled={isLoading}
             />
           </div>
