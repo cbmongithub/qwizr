@@ -1,5 +1,4 @@
 import { LinkProps } from 'next/link'
-import { Document, Types } from 'mongoose'
 
 export interface IconProps extends React.HTMLAttributes<SVGElement> {}
 
@@ -67,15 +66,3 @@ export interface QwizzesProps {
 }
 
 export interface QwizzesCategoryProps extends QwizzesProps {}
-
-export interface User extends Document {
-  first_name: string
-  last_name: string
-  username: string
-  email: string
-  password: string
-  country: string
-}
-
-export interface UserAuthFormProps
-  extends React.HTMLAttributes<HTMLDivElement> {}

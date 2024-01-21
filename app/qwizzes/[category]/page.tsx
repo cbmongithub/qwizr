@@ -3,13 +3,12 @@ import { type QwizzesCategoryProps, type QwizzesPageProps } from '@/types'
 
 import { Qwizzes } from '@/components/qwizzes'
 
-export async function generateMetadata({
-  params: { category },
-}: QwizzesPageProps) {
-  const formattedCategory = formatSlug(category)
+export async function generateMetadata({ params }: QwizzesPageProps) {
   return {
-    title: `${formattedCategory}`,
-    description: `Browse through our ${formattedCategory} qwizzes and challenge your skillset.`,
+    title: `${formatSlug(params.category)}`,
+    description: `Browse through our ${formatSlug(
+      params.category
+    )} qwizzes and challenge your skillset.`,
   }
 }
 // Come back to this later, figure out why it is not generating
