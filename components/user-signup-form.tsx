@@ -38,7 +38,7 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
     console.log(formData)
     try {
       setIsLoading(true)
-      const response = await fetch('api/auth/sign-up', {
+      const response = await fetch('api/user/sign-up', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

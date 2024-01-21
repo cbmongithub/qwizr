@@ -1,5 +1,4 @@
 import { type User } from '@/types'
-import moment from 'moment'
 import { model, models, Schema } from 'mongoose'
 
 const UserSchema = new Schema<User>({
@@ -43,14 +42,6 @@ const UserSchema = new Schema<User>({
     type: String,
     required: [true, 'Country is required'],
   },
-  created_at: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp: number) =>
-      moment(timestamp).format('MMMM Do YYYY [at] h:mm:ss a'),
-  },
 })
 
-const User = models.User || model<User>('User', UserSchema)
-
-export default User
+export default models.User || model<User>('User', UserSchema)
