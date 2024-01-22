@@ -1,41 +1,8 @@
 import { formatSlug } from '@/helpers'
-import {
-  type QwizDataProps,
-  type QwizPageProps,
-  type QwizzesCategoryProps,
-  type QwizzesPageProps,
-} from '@/types'
+import { type QwizDataProps, type QwizPageProps } from '@/types'
 
 import { NotFound } from '@/components/not-found'
 import { Qwiz } from '@/components/qwiz'
-
-export async function generateMetadata({ params }: QwizPageProps) {
-  return {
-    title: `${formatSlug(params.slug)} Qwiz`,
-    description: `How much do you really know about ${formatSlug(
-      params.slug
-    )}? Take the qwiz today and find out!`,
-  }
-}
-// Come back to this later, figure out why it is not generating
-//export async function generateStaticParams({
-//  params: { category },
-//}: QwizzesPage) {
-//  const res = await fetch(
-//    `${process.env.NEXT_PUBLIC_BASE_URL}/api/qwizzes/${category}`,
-//    { method: 'GET' }
-//  )
-//
-//  if (!res.ok) {
-//    throw new Error('Something when wrong while fetching all qwizzes.')
-//  }
-//
-//  const { qwizzes } = (await res.json()) as QwizzesCategory
-//
-//  return qwizzes.map(qwiz => ({
-//    slug: qwiz.slug,
-//  }))
-//}
 
 export default async function QwizPage({
   params: { category, slug },
@@ -44,17 +11,6 @@ export default async function QwizPage({
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/qwizzes/${category}/${slug}`,
     { method: 'GET' }
   )
-
-  //const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/chat-gpt`, {
-  //  method: 'POST',
-  //  headers: {
-  //    'Content-Type': 'application/json',
-  //  },
-  //  body: JSON.stringify({
-  //    category: category,
-  //    slug: slug,
-  //  }),
-  //})
 
   if (!res.ok) {
     return (
@@ -65,7 +21,6 @@ export default async function QwizPage({
   }
 
   const { qwizData } = (await res.json()) as QwizDataProps
-  //console.log('qwizData that came back from api/chat-gpt: ', qwizData)
 
   return (
     <section className='container relative'>

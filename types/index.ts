@@ -66,3 +66,6 @@ export interface QwizzesProps {
 }
 
 export interface QwizzesCategoryProps extends QwizzesProps {}
+
+export interface UserAuthFormProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
