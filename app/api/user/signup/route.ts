@@ -1,73 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { dbConnection } from '@/lib'
 import User from '@/models/User'
 import { hash } from 'bcrypt'
 
-import dbConnection from '@/lib/db-connection'
-
 export async function POST(req: NextRequest) {
   try {
-    const db = await dbConnection().catch(err => {
-      console.log(err)
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Something went wrong while connecting to the database.',
-        },
-        { status: 500 }
-      )
-    })
-
-    const {
-      email,
-      password,
-      first_name,
-      last_name,
-      username,
-      country,
-      language,
-    } = (await JSON.parse(JSON.stringify(req.body))) ?? {}
-
-    console.log(
-      email,
-      password,
-      first_name,
-      last_name,
-      username,
-      country,
-      language
-    )
-
+    const { first_name, last_name, email, password, username, country } =
+      await req.json()
+    //await dbConnection().catch(err => console.log(err))
     const userExists = await User.findOne({ email })
-
     if (userExists) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'User already exists',
-        },
+        { message: 'User already exists!' },
         { status: 409 }
       )
+    } else {
+      await User.create({
+        first_name,
+        last_name,
+        email,
+        password: await hash(password, 10),
+        username,
+        country,
+      })
+      return NextResponse.json({ message: 'User created!' }, { status: 201 })
     }
-
-    const hashedPassword = await hash(password, 10)
-
-    const user = await User.create({
-      first_name,
-      last_name,
-      username,
-      email,
-      password: hashedPassword,
-      country,
-      language,
-    })
-
-    return NextResponse.json({ success: true, data: user }, { status: 201 })
   } catch (error) {
+    console.log('Error in catch block of signup: ', error)
     return NextResponse.json(
-      {
-        success: false,
-        error: 'Something went wrong while processing your request',
-      },
+      { message: 'An error occurred while processing your request.' },
       { status: 500 }
     )
   }

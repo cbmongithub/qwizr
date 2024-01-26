@@ -1,22 +1,12 @@
-import mongoose from 'mongoose'
+// import mongoose from 'mongoose'
 
-const { MONGODB_URI } = process.env
+// const dbConnection = async () => {
+//   try {
+//     await mongoose.connect(process.env.MONGODB_URI!)
+//     console.log('Connected to MongoDB.')
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
-if (!MONGODB_URI) {
-  throw new Error('Invalid Environment variable for MONGODB_URI')
-}
-
-const dbConnection = async () => {
-  try {
-    const { connection } = await mongoose.connect(MONGODB_URI)
-
-    if (connection.readyState === 1) {
-      console.log('Connected to MongoDB!')
-      return connection
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export default dbConnection
+// export default dbConnection

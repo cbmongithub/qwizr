@@ -1,15 +1,6 @@
-import mongoose from 'mongoose'
+import { InferSchemaType, model, models, Schema } from 'mongoose'
 
-export interface UserProps extends mongoose.Document {
-  first_name: string
-  last_name: string
-  username: string
-  email: string
-  password: string
-  country: string
-}
-
-const UserSchema = new mongoose.Schema<UserProps>({
+const UserSchema = new Schema({
   first_name: {
     type: String,
     required: [true, 'First name is required'],
@@ -52,5 +43,8 @@ const UserSchema = new mongoose.Schema<UserProps>({
   },
 })
 
-export default mongoose.models.User ||
-  mongoose.model<UserProps>('User', UserSchema)
+type UserModel = InferSchemaType<typeof UserSchema>
+
+const User = models.User || model<UserModel>('User', UserSchema)
+
+export default User
