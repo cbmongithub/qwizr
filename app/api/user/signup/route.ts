@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   try {
     const { first_name, last_name, email, password, username, country } =
       await req.json()
-    //await dbConnection().catch(err => console.log(err))
+    await dbConnection()
     const userExists = await User.findOne({ email })
     if (userExists) {
       return NextResponse.json(
