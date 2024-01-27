@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { dbConnection } from '@/lib'
-import User from '@/models/User'
+import { db } from '@/lib'
 import { hash } from 'bcrypt'
+
+const User = db.User
 
 export async function POST(req: NextRequest) {
   try {
+    console.log(req.json())
     const { first_name, last_name, email, password, username, country } =
       await req.json()
-    await dbConnection()
     const userExists = await User.findOne({ email })
     if (userExists) {
       return NextResponse.json(
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest) {
         { status: 409 }
       )
     } else {
-      await User.create({
+      const user = await User.create({
         first_name,
         last_name,
         email,
@@ -23,6 +24,9 @@ export async function POST(req: NextRequest) {
         username,
         country,
       })
+
+      await user.save()
+
       return NextResponse.json({ message: 'User created!' }, { status: 201 })
     }
   } catch (error) {
