@@ -34,15 +34,14 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
-    console.log(JSON.stringify(formData))
     try {
       setIsLoading(true)
-      const response = await fetch('http://localhost:3000/api/user/signup', {
+      const response = await fetch('http://localhost:3000/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ formData }),
+        body: JSON.stringify(formData),
       })
 
       if (!response.ok) {
