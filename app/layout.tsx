@@ -7,6 +7,7 @@ import { type LayoutProps } from '@/types'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import SessionProvider from '@/components/session-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <>
+    <SessionProvider>
       <html
         lang='en'
         suppressHydrationWarning>
@@ -54,6 +55,6 @@ export default function RootLayout({ children }: LayoutProps) {
           </ThemeProvider>
         </body>
       </html>
-    </>
+    </SessionProvider>
   )
 }

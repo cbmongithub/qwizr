@@ -42,7 +42,8 @@ export async function POST(req: NextRequest) {
         username,
         country,
       })
-      return NextResponse.json({ message: 'User created!' }, { status: 201 })
+      NextResponse.json({ message: 'User created!' }, { status: 201 })
+      NextResponse.redirect('/dashboard')
     }
   } catch (error) {
     console.log('Error in catch block of signup: ', error)

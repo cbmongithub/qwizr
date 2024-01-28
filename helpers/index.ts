@@ -1,11 +1,2 @@
-export default function formatSlug(slug: string): string {
-  const [firstWord, secondWord] = slug.split('-')
-
-  const formattedSlug = `${
-    firstWord.charAt(0).toUpperCase() + firstWord.slice(1)
-  }${secondWord ? ' ' + secondWord : ''}`
-
-  return formattedSlug
-}
-
-export { formatSlug }
+export { auth, authOptions } from './auth'
+export { formatSlug } from './format-slug'
