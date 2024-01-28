@@ -27,12 +27,12 @@ export default function LandingPage() {
         </PageHeaderDescription>
         <PageActions>
           <Link
-            href='/'
+            href='/login'
             className={cn(buttonVariants())}>
             Login
           </Link>
           <Link
-            href='/'
+            href='/signup'
             className={cn(buttonVariants({ variant: 'outline' }))}>
             Signup
           </Link>

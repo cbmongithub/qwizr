@@ -36,13 +36,16 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
     e.preventDefault()
     try {
       setIsLoading(true)
-      const response = await fetch('http://localhost:3000/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      )
 
       if (!response.ok) {
         setSubmitError(response.statusText)

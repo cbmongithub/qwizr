@@ -32,7 +32,7 @@ export default function QwizzesLayout({ children }: LayoutProps) {
             Login
           </Link>
           <Link
-            href='/sign-up'
+            href='/signup'
             className={cn(buttonVariants({ variant: 'outline' }))}>
             Signup
           </Link>
