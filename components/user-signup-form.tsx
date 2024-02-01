@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { siteConfig } from '@/config'
 import { cn } from '@/lib'
 import { UserAuthFormProps } from '@/types'
@@ -21,6 +22,7 @@ import {
 } from './ui/select'
 
 export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -52,6 +54,15 @@ export function UserSignupForm({ className, ...props }: UserAuthFormProps) {
       } else {
         const result = await response.json()
         console.log(result)
+        setFormData({
+          first_name: '',
+          last_name: '',
+          email: '',
+          password: '',
+          username: '',
+          country: '',
+        })
+        router.push('/dashboard')
       }
 
       setIsLoading(false)

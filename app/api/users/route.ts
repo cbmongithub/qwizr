@@ -26,7 +26,6 @@ export async function POST(req: NextRequest) {
     await dbConnection().catch(err => console.log(err))
     const { first_name, last_name, email, password, username, country } =
       await req.json()
-    await dbConnection()
     const userExists = await User.findOne({ email })
     if (userExists) {
       return NextResponse.json(
@@ -34,7 +33,7 @@ export async function POST(req: NextRequest) {
         { status: 409 }
       )
     } else {
-      await User.create({
+      const user = await User.create({
         first_name,
         last_name,
         email,
@@ -42,8 +41,10 @@ export async function POST(req: NextRequest) {
         username,
         country,
       })
-      NextResponse.json({ message: 'User created!' }, { status: 201 })
-      NextResponse.redirect('/dashboard')
+      return NextResponse.json(
+        { message: 'User created!', user },
+        { status: 201 }
+      )
     }
   } catch (error) {
     console.log('Error in catch block of signup: ', error)
