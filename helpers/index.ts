@@ -1,2 +1,2 @@
-export { auth, authOptions } from './auth'
+export { authOptions } from './auth-options'
 export { formatSlug } from './format-slug'

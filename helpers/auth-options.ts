@@ -1,13 +1,7 @@
-import type {
-  GetServerSidePropsContext,
-  NextApiRequest,
-  NextApiResponse,
-} from 'next'
 import { dbConnection } from '@/lib'
 import User from '@/models/User'
 import { compare } from 'bcrypt'
 import type { NextAuthOptions } from 'next-auth'
-import { getServerSession } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 
@@ -82,12 +76,3 @@ export const authOptions = {
     },
   },
 } satisfies NextAuthOptions
-
-export function auth(
-  ...args:
-    | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
-    | [NextApiRequest, NextApiResponse]
-    | []
-) {
-  return getServerSession(...args, authOptions)
-}
