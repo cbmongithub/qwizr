@@ -1,4 +1,4 @@
-import { QwizInfoCardProps } from '@/types'
+import type { QwizInfoCardProps } from '@/types'
 
 export const qwizzes = [
   {

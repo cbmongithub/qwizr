@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { dbConnection } from '@/lib'
 import User from '@/models/User'
 import { hash } from 'bcrypt'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET() {
   try {
@@ -9,9 +9,9 @@ export async function GET() {
     const users = await User.find({})
     if (users) {
       return NextResponse.json({ users }, { status: 200 })
-    } else {
-      return NextResponse.json({ message: 'No users found.' }, { status: 404 })
     }
+      return NextResponse.json({ message: 'No users found.' }, { status: 404 })
+
   } catch (error) {
     console.log('Error in catch block of getting all users: ', error)
     return NextResponse.json(
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
         { message: 'User already exists!' },
         { status: 409 }
       )
-    } else {
+    }
       const user = await User.create({
         first_name,
         last_name,
@@ -45,7 +45,6 @@ export async function POST(req: NextRequest) {
         { message: 'User created!', user },
         { status: 201 }
       )
-    }
   } catch (error) {
     console.log('Error in catch block of signup: ', error)
     return NextResponse.json(

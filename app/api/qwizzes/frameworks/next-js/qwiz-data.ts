@@ -1,4 +1,4 @@
-import { QwizItemProps } from '@/types'
+import type { QwizItemProps } from '@/types'
 
 const qwizData = [
   {

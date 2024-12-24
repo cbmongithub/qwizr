@@ -1,4 +1,4 @@
-import { InferSchemaType, model, models, Schema } from 'mongoose'
+import { type InferSchemaType, Schema, model, models } from 'mongoose'
 
 const UserSchema = new Schema(
   {

@@ -1,3 +1,5 @@
+<p><a href="https://qwizr.netlify.app"><img style='border-radius: 12px;filter: drop-shadow(0px 9px 10px #888888);' src="https://repository-images.githubusercontent.com/735717651/01270b48-523a-4787-9162-c4d4359ed17b" alt="Qwizr Github repo image" /></a></p>
+
 # Qwizr
 
 An app for quizzes on web development.

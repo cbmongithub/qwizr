@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { formatSlug } from '@/helpers'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
   try {
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
               ],
             }
           ]
-          Using this exact format, generate your own questions and answers for a quiz about ${formattedSlug}. Make sure to use isCorrect: true for the correct answer.  
+          Using this exact format, generate your own questions and answers for a quiz about ${formattedSlug}. Make sure to use isCorrect: true for the correct answer.
           `,
         },
       ],
